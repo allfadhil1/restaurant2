@@ -60,7 +60,7 @@ https://templatemo.com/tm-558-klassy-cafe
                             <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
                             <li class="scroll-to-section"><a href="#about">About</a></li>
                            	
-                        <!-- 
+                        <!-- `
                             <li class="submenu">
                                 <a href="javascript:;">Drop Down</a>
                                 <ul>
@@ -70,7 +70,7 @@ https://templatemo.com/tm-558-klassy-cafe
                                 </ul>
                             </li>
                         -->
-                            <li class="scroll-to-section"><a href="#menu">Menu</a></li>
+                            <li class="scroll-to-section"><a href="{{ route('menu.index') }}">Menu</a></li>
                             <li class="scroll-to-section"><a href="#chefs">Chefs</a></li> 
                             <li class="submenu">
                                 <a href="javascript:;">Features</a>
@@ -83,6 +83,16 @@ https://templatemo.com/tm-558-klassy-cafe
                             </li>
                             <!-- <li class=""><a rel="sponsored" href="https://templatemo.com" target="_blank">External URL</a></li> -->
                             <li class="scroll-to-section"><a href="#reservation">Contact Us</a></li> 
+                            @if (Route::has('login'))
+                                    @auth
+                                        <li class="scroll-to-section"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                                            @else
+                                                <li class="scroll-to-section"><a href="{{ route('login') }}">Log in</a></li>
+                                            @if (Route::has('register'))
+                                                <li class="scroll-to-section"><a href="{{ route('register') }}">Register</a></li>
+                                            @endif
+                                    @endauth
+                            @endif
                         </ul>        
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -258,7 +268,7 @@ https://templatemo.com/tm-558-klassy-cafe
                         <div class='card card3'>
                             <div class="price"><h6>$7.25</h6></div>
                             <div class='info'>
-                              <h1 class='title'>Klassic Cake</h1>
+                              <h1 class='title'>Klassic Bread Cake</h1>
                               <p class='description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedii do eiusmod teme.</p>
                               <div class="main-text-button">
                                   <div class="scroll-to-section"><a href="#reservation">Make Reservation <i class="fa fa-angle-down"></i></a></div>
