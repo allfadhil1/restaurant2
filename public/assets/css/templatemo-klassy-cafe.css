@@ -209,7 +209,7 @@ header
 
 .background-header {
   background-color: #fff;
-  height: 80px!important;
+  height: 30px!important;
   position: fixed!important;
   top: 0px;
   left: 0px;
@@ -217,7 +217,9 @@ header
   box-shadow: 0px 0px 10px rgba(0,0,0,0.15)!important;
 }
 
-.background-header .logo,
+
+
+
 .background-header .main-nav .nav li a {
   color: #1e1e1e!important;
 }
@@ -261,6 +263,7 @@ header
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
+  height: 40px;
 }
 
 .background-header .main-nav .logo {
@@ -657,7 +660,7 @@ banner
 }
 
 #top .left-content {
-  background-image: url(../images/top-left-bg.jpg);
+  background-image: url(../images/bg_belakang.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -671,6 +674,8 @@ banner
   top: 50%;
   transform: translate(-50%, -50%);
   left: 50%;
+  
+
 }
 
 #top .left-content h4 {
