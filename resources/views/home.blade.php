@@ -65,7 +65,13 @@
                                 </ul>
                             </li>
                         -->
-                            <li class="scroll-to-section"><a href="{{ route('menu.index') }}">Menu</a></li>
+                            <li class="scroll-to-section">
+                                @if (Auth::check() && Auth::user()->usertype == 1)
+                                    <a href="{{ route('menu.index') }}">Menu</a>
+                                @else
+                                    <a href="#menu">Menu</a>
+                                @endif
+                            </li>
                             <li class="scroll-to-section"><a href="#chefs">Chefs</a></li> 
                             <li class="submenu">
                                 <a href="javascript:;">Features</a>
@@ -77,7 +83,17 @@
                                 </ul>
                             </li>
                             <!-- <li class=""><a rel="sponsored" href="https://templatemo.com" target="_blank">External URL</a></li> -->
-                            <li class="scroll-to-section"><a href="#reservation">Contact Us</a></li> 
+                            <li class="scroll-to-section"><a href="#reservation">Contact Us</a></li>
+                            @if (Route::has('login'))
+                                @auth
+                                    <li class="scroll-to-section"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                                @else
+                                    <li class="scroll-to-section"><a href="{{ route('login') }}">Log in</a></li>
+                            @if (Route::has('register'))
+                                <li class="scroll-to-section"><a href="{{ route('register') }}">Register</a></li>
+                        @endif
+                        @endauth
+                        @endif 
                         </ul>        
                         <a class='menu-trigger'>
                             <span>Menu</span>

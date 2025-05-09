@@ -11,12 +11,15 @@ use App\Http\Controllers\MenuController;
 
 Route::get ("/",[HomeController::class,"index"]);
 Route::resource('menu', MenuController::class)->except('show');
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
+// route untuk user
+Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+// route untuk admin
+Route::middleware(['auth:sanctum', 'verified', 'is_admin'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
 });
