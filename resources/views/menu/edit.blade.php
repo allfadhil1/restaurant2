@@ -52,7 +52,7 @@
 
         <div>
             <button type="submit"
-                class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition">
+               class="bg-[#fb5849] text-white px-5 py-2 rounded-lg hover:bg-[#e04d40] transition">
                 Simpan
             </button>
         </div>

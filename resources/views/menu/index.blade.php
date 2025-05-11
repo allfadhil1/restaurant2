@@ -1,530 +1,135 @@
 @extends('layouts.app')
 
 <style>
-    
-.background-header {
-  background-color: #fff;
-  height: 30px!important;
-  position: fixed!important;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.15)!important;
+body {
+    margin: 0; /* Hapus margin dari body agar tidak ada margin default */
+    font-family: Arial, sans-serif; /* Pilih font yang lebih nyaman dibaca */
 }
 
-
-
-
-.background-header .main-nav .nav li a {
-  color: #1e1e1e!important;
+.admin-navbar {
+    background-color: #fb5849;
+    padding: 15px 0; /* Mengurangi padding atas dan bawah agar lebih rapat */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 50;
 }
 
-.background-header .main-nav .nav li:hover a {
-  color: #fb5849!important;
+.container-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Pusatkan navbar */
+    width: 100%; /* Pastikan navbar memenuhi lebar layar */
 }
 
-.background-header .nav li a.active {
-  color: #fb5849!important;
+.logo-img {
+    height: 40px;
+    width: auto;
+    margin: 0; /* Menghapus margin di sekitar logo */
 }
 
-.header-area {
-  background-color: #fff;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  z-index: 100;
-  height: 100px;
-  -webkit-transition: all .5s ease 0s;
-  -moz-transition: all .5s ease 0s;
-  -o-transition: all .5s ease 0s;
-  transition: all .5s ease 0s;
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
 }
 
-.header-area .main-nav {
-  min-height: 80px;
-  background: transparent;
+.nav-links li a {
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
-.header-area .main-nav .logo {
-  line-height: 100px;
-  color: #fff;
-  font-size: 28px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  float: left;
-  -webkit-transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
-  height: 40px;
+.nav-links li a:hover {
+    background-color: #e04d40;
 }
 
-.background-header .main-nav .logo {
-  line-height: 75px;
+.nav-links li a.active-manual {
+    background-color: #ffffff;
+    color: #fb5849;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #fb5849;
+    padding: 10px 15px; /* Padding ekstra agar lebih menonjol */
 }
 
-.background-header .nav {
-  margin-top: 20px !important;
+main {
+    margin: 20px; /* Memberikan margin pada seluruh konten utama */
 }
 
-.header-area .main-nav .nav {
-  float: right;
-  margin-top: 30px;
-  margin-right: 0px;
-  background-color: transparent;
-  -webkit-transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
-  position: relative;
-  z-index: 999;
+.content-container {
+    margin: 20px; /* Margin pada kontainer utama konten */
 }
-
-.header-area .main-nav .nav li {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.header-area .main-nav .nav li:last-child {
-  padding-right: 0px;
-}
-
-.header-area .main-nav .nav li a {
-  display: block;
-  font-weight: 600;
-  font-size: 15px;
-  color: #2a2a2a;
-  text-transform: capitalize;
-  -webkit-transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
-  height: 40px;
-  line-height: 40px;
-  border: transparent;
-  letter-spacing: 1px;
-}
-
-.header-area .main-nav .nav li a {
-  color: #2a2a2a;
-}
-
-.header-area .main-nav .nav li:hover a,
-.header-area .main-nav .nav li a.active {
-  color: #fb5849!important;
-}
-
-.background-header .main-nav .nav li:hover a,
-.background-header .main-nav .nav li a.active {
-  color: #fb5849!important;
-  opacity: 1;
-}
-
-.header-area .main-nav .nav li.submenu {
-  position: relative;
-  padding-right: 30px;
-}
-
-.header-area .main-nav .nav li.submenu:after {
-  font-family: FontAwesome;
-  content: "\f107";
-  font-size: 12px;
-  color: #2a2a2a;
-  position: absolute;
-  right: 18px;
-  top: 12px;
-}
-
-.background-header .main-nav .nav li.submenu:after {
-  color: #2a2a2a;
-}
-
-.header-area .main-nav .nav li.submenu ul {
-  position: absolute;
-  width: 200px;
-  box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.06);
-  overflow: hidden;
-  top: 50px;
-  opacity: 0;
-  transform: translateY(+2em);
-  visibility: hidden;
-  z-index: -1;
-  transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
-}
-
-.header-area .main-nav .nav li.submenu ul li {
-  margin-left: 0px;
-  padding-left: 0px;
-  padding-right: 0px;
-}
-
-.header-area .main-nav .nav li.submenu ul li a {
-  opacity: 1;
-  display: block;
-  background: #f7f7f7;
-  color: #2a2a2a!important;
-  padding-left: 20px;
-  height: 40px;
-  line-height: 40px;
-  -webkit-transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
-  position: relative;
-  font-size: 13px;
-  font-weight: 400;
-  border-bottom: 1px solid #eee;
-}
-
-.header-area .main-nav .nav li.submenu ul li a:hover {
-  background: #fff;
-  color: #fb5849!important;
-  padding-left: 25px;
-}
-
-.header-area .main-nav .nav li.submenu ul li a:hover:before {
-  width: 3px;
-}
-
-.header-area .main-nav .nav li.submenu:hover ul {
-  visibility: visible;
-  opacity: 1;
-  z-index: 1;
-  transform: translateY(0%);
-  transition-delay: 0s, 0s, 0.3s;
-}
-
-.header-area .main-nav .menu-trigger {
-  cursor: pointer;
-  display: block;
-  position: absolute;
-  top: 33px;
-  width: 32px;
-  height: 40px;
-  text-indent: -9999em;
-  z-index: 99;
-  right: 40px;
-  display: none;
-}
-
-.background-header .main-nav .menu-trigger {
-  top: 23px;
-}
-
-.header-area .main-nav .menu-trigger span,
-.header-area .main-nav .menu-trigger span:before,
-.header-area .main-nav .menu-trigger span:after {
-  -moz-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -webkit-transition: all 0.4s;
-  transition: all 0.4s;
-  background-color: #1e1e1e;
-  display: block;
-  position: absolute;
-  width: 30px;
-  height: 2px;
-  left: 0;
-}
-
-.background-header .main-nav .menu-trigger span,
-.background-header .main-nav .menu-trigger span:before,
-.background-header .main-nav .menu-trigger span:after {
-  background-color: #1e1e1e;
-}
-
-.header-area .main-nav .menu-trigger span:before,
-.header-area .main-nav .menu-trigger span:after {
-  -moz-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -webkit-transition: all 0.4s;
-  transition: all 0.4s;
-  background-color: #1e1e1e;
-  display: block;
-  position: absolute;
-  width: 30px;
-  height: 2px;
-  left: 0;
-  width: 75%;
-}
-
-.background-header .main-nav .menu-trigger span:before,
-.background-header .main-nav .menu-trigger span:after {
-  background-color: #1e1e1e;
-}
-
-.header-area .main-nav .menu-trigger span:before,
-.header-area .main-nav .menu-trigger span:after {
-  content: "";
-}
-
-.header-area .main-nav .menu-trigger span {
-  top: 16px;
-}
-
-.header-area .main-nav .menu-trigger span:before {
-  -moz-transform-origin: 33% 100%;
-  -ms-transform-origin: 33% 100%;
-  -webkit-transform-origin: 33% 100%;
-  transform-origin: 33% 100%;
-  top: -10px;
-  z-index: 10;
-}
-
-.header-area .main-nav .menu-trigger span:after {
-  -moz-transform-origin: 33% 0;
-  -ms-transform-origin: 33% 0;
-  -webkit-transform-origin: 33% 0;
-  transform-origin: 33% 0;
-  top: 10px;
-}
-
-.header-area .main-nav .menu-trigger.active span,
-.header-area .main-nav .menu-trigger.active span:before,
-.header-area .main-nav .menu-trigger.active span:after {
-  background-color: transparent;
-  width: 100%;
-}
-
-.header-area .main-nav .menu-trigger.active span:before {
-  -moz-transform: translateY(6px) translateX(1px) rotate(45deg);
-  -ms-transform: translateY(6px) translateX(1px) rotate(45deg);
-  -webkit-transform: translateY(6px) translateX(1px) rotate(45deg);
-  transform: translateY(6px) translateX(1px) rotate(45deg);
-  background-color: #1e1e1e;
-}
-
-.background-header .main-nav .menu-trigger.active span:before {
-  background-color: #1e1e1e;
-}
-
-.header-area .main-nav .menu-trigger.active span:after {
-  -moz-transform: translateY(-6px) translateX(1px) rotate(-45deg);
-  -ms-transform: translateY(-6px) translateX(1px) rotate(-45deg);
-  -webkit-transform: translateY(-6px) translateX(1px) rotate(-45deg);
-  transform: translateY(-6px) translateX(1px) rotate(-45deg);
-  background-color: #1e1e1e;
-}
-
-.background-header .main-nav .menu-trigger.active span:after {
-  background-color: #1e1e1e;
-}
-
-.header-area.header-sticky {
-  min-height: 80px;
-}
-
-.header-area .nav {
-  margin-top: 30px;
-}
-
-.header-area.header-sticky .nav li a.active {
-  color: #fb5849;
-}
-
-@media (max-width: 1200px) {
-  .header-area .main-nav .nav li {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-  .header-area .main-nav:before {
-    display: none;
-  }
-}
-
-@media (max-width: 767px) {
-  .header-area .main-nav .logo {
-    color: #1e1e1e;
-  }
-  .header-area.header-sticky .nav li a:hover,
-  .header-area.header-sticky .nav li a.active {
-    color: #fb5849!important;
-    opacity: 1;
-  }
-  .header-area.header-sticky .nav li.search-icon a {
-    width: 100%;
-  }
-  .header-area {
-    background-color: #f7f7f7;
-    padding: 0px 15px;
-    height: 100px;
-    box-shadow: none;
-    text-align: center;
-  }
-  .header-area .container {
-    padding: 0px;
-  }
-  .header-area .logo {
-    margin-left: 30px;
-  }
-  .header-area .menu-trigger {
-    display: block !important;
-  }
-  .header-area .main-nav {
-    overflow: hidden;
-  }
-  .header-area .main-nav .nav {
-    float: none;
-    width: 100%;
-    display: none;
-    -webkit-transition: all 0s ease 0s;
-    -moz-transition: all 0s ease 0s;
-    -o-transition: all 0s ease 0s;
-    transition: all 0s ease 0s;
-    margin-left: 0px;
-  }
-  .header-area .main-nav .nav li:first-child {
-    border-top: 1px solid #eee;
-  }
-  .header-area.header-sticky .nav {
-    margin-top: 100px !important;
-  }
-  .header-area .main-nav .nav li {
-    width: 100%;
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-  }
-  .header-area .main-nav .nav li a {
-    height: 50px !important;
-    line-height: 50px !important;
-    padding: 0px !important;
-    border: none !important;
-    background: #f7f7f7 !important;
-    color: #191a20 !important;
-  }
-  .header-area .main-nav .nav li a:hover {
-    background: #eee !important;
-    color: #fb5849!important;
-  }
-  .header-area .main-nav .nav li.submenu ul {
-    position: relative;
-    visibility: inherit;
-    opacity: 1;
-    z-index: 1;
-    transform: translateY(0%);
-    transition-delay: 0s, 0s, 0.3s;
-    top: 0px;
-    width: 100%;
-    box-shadow: none;
-    height: 0px;
-  }
-  .header-area .main-nav .nav li.submenu ul li a {
-    font-size: 12px;
-    font-weight: 400;
-  }
-  .header-area .main-nav .nav li.submenu ul li a:hover:before {
-    width: 0px;
-  }
-  .header-area .main-nav .nav li.submenu ul.active {
-    height: auto !important;
-  }
-  .header-area .main-nav .nav li.submenu:after {
-    color: #3B566E;
-    right: 25px;
-    font-size: 14px;
-    top: 15px;
-  }
-  .header-area .main-nav .nav li.submenu:hover ul, .header-area .main-nav .nav li.submenu:focus ul {
-    height: 0px;
-  }
-}
-
-@media (min-width: 767px) {
-  .header-area .main-nav .nav {
-    display: flex !important;
-  }
-}
-
 </style>
-<!-- ***** Header Area Start ***** -->
-<header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
-                        <img src="assets/images/klassy-logo.png" alt="Klassy Cafe Logo">
-                    </a>
-                    <!-- ***** Logo End ***** -->
 
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                        <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
-                        <li class="scroll-to-section"><a href="#about">About</a></li>
-                        <li class="scroll-to-section"><a href="{{ route('menu.index') }}">Menu</a></li>
-                        <li class="scroll-to-section"><a href="#chefs">Chefs</a></li>
-                        <li class="submenu">
-                            <a href="javascript:;">Features</a>
-                            <ul>
-                                <li><a href="#">Features Page 1</a></li>
-                                <li><a href="#">Features Page 2</a></li>
-                                <li><a href="#">Features Page 3</a></li>
-                                <li><a href="#">Features Page 4</a></li>
-                            </ul>
-                        </li>
-                        <li class="scroll-to-section"><a href="#reservation">Contact Us</a></li>
-                    </ul>        
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
 <!-- ***** Header Area End ***** -->
 
-@section('content')
-<a href="{{ route('menu.create') }}" class="bg-[#fb5849] text-white px-5 py-2 rounded-lg mb-6 inline-block hover:bg-[#e04d40] transition">
-    + Tambah Menu
-</a>
-
-@if(session('success'))
-    <div class="mb-4 p-4 bg-[#ffe8e5] text-[#fb5849] border-l-4 border-[#fb5849] rounded-lg shadow-md">
-        {{ session('success') }}
+<nav class="admin-navbar">
+    <div class="container-navbar">
+        <!-- Menu -->
+        <ul class="nav-links">
+            <li><a href="/admin/home">Home Admin</a></li>
+            <li><a href="/admin/menu" class="active-manual">Menu</a></li>
+            <li><a href="/admin/chef">Chef</a></li>
+            <li><a href="/admin/booking">Booking Meja</a></li>
+        </ul>
     </div>
-@endif
+</nav>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    @foreach($menus as $menu)
-        <div class="bg-white border border-[#fb5849]/30 rounded-lg shadow-lg overflow-hidden">
-            <!-- Gambar -->
-            @if($menu->gambar)
-                <img src="{{ asset('storage/'.$menu->gambar) }}" alt="{{ $menu->nama }}" class="w-full h-48 object-cover">
-            @endif
 
-            <div class="p-4">
-                <!-- Nama Menu -->
-                <h5 class="text-xl font-semibold text-[#fb5849] mb-2">{{ $menu->nama }}</h5>
 
-                <!-- Harga -->
-                <p class="text-lg font-bold text-[#fb5849] mb-2">Rp {{ number_format($menu->harga, 0, ',', '.') }}</p>
+@section('content')
+<main class="content-container">
+    <a href="{{ route('menu.create') }}" class="bg-[#fb5849] text-white px-5 py-2 rounded-lg mb-6 inline-block hover:bg-[#e04d40] transition">
+        + Tambah Menu
+    </a>
 
-                <!-- Deskripsi -->
-                <p class="text-gray-600 text-sm mb-4">{{ $menu->deskripsi }}</p>
+    @if(session('success'))
+        <div class="mb-4 p-4 bg-[#ffe8e5] text-[#fb5849] border-l-4 border-[#fb5849] rounded-lg shadow-md">
+            {{ session('success') }}
+        </div>
+    @endif
 
-                <div class="flex justify-between items-center">
-                    <!-- Tombol Edit -->
-                    <a href="{{ route('menu.edit', $menu) }}" class="bg-[#fb5849] text-white px-4 py-2 rounded-lg hover:bg-[#e04d40] transition">
-                        Edit
-                    </a>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        @foreach($menus as $menu)
+            <div class="bg-white border border-[#fb5849]/30 rounded-lg shadow-lg overflow-hidden">
+                <!-- Gambar -->
+                @if($menu->gambar)
+                    <img src="{{ asset('storage/'.$menu->gambar) }}" alt="{{ $menu->nama }}" class="w-full h-48 object-cover">
+                @endif
 
-                    <!-- Tombol Hapus -->
-                    <form action="{{ route('menu.destroy', $menu) }}" method="POST" onsubmit="return confirm('Hapus menu ini?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
-                            Hapus
-                        </button>
-                    </form>
+                <div class="p-4">
+                    <!-- Nama Menu -->
+                    <h5 class="text-xl font-semibold text-[#fb5849] mb-2">{{ $menu->nama }}</h5>
+
+                    <!-- Harga -->
+                    <p class="text-lg font-bold text-[#fb5849] mb-2">Rp {{ number_format($menu->harga, 0, ',', '.') }}</p>
+
+                    <!-- Deskripsi -->
+                    <p class="text-gray-600 text-sm mb-4">{{ $menu->deskripsi }}</p>
+
+                    <div class="flex justify-between items-center">
+                        <!-- Tombol Edit -->
+                        <a href="{{ route('menu.edit', $menu) }}" class="bg-[#fb5849] text-white px-4 py-2 rounded-lg hover:bg-[#e04d40] transition">
+                            Edit
+                        </a>
+
+                        <!-- Tombol Hapus -->
+                        <form action="{{ route('menu.destroy', $menu) }}" method="POST" onsubmit="return confirm('Hapus menu ini?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+                                Hapus
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    @endforeach
-</div>
+        @endforeach
+    </div>
+</main>
 @endsection
