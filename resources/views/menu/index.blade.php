@@ -72,10 +72,9 @@ main {
     <div class="container-navbar">
         <!-- Menu -->
         <ul class="nav-links">
-            <li><a href="home-admin.php">Home Admin</a></li>
-            <li><a href="/admin/menu" class="active-manual">Menu</a></li>
-            <li><a href="/admin/chef">Chef</a></li>
-            <li><a href="/admin/booking">Booking Meja</a></li>
+            <li><a href="{{ route('menu.index') }}" class="active-manual">Menu</a></li>
+            <a href="{{ route('menu.chef.index') }}">Lihat Chef</a>
+            <li><a href="{{ route('menu.booking.index') }}">Booking Meja</a></li>
         </ul>
     </div>
 </nav>
