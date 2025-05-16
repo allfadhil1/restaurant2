@@ -73,8 +73,7 @@ main {
         <!-- Menu -->
         <ul class="nav-links">
             <li><a href="{{ route('menu.index') }}" class="active-manual">Menu</a></li>
-            <a href="{{ route('menu.chef.index') }}">Lihat Chef</a>
-            <li><a href="{{ route('menu.booking.index') }}">Booking Meja</a></li>
+            <li><a href="{{ route('chef.index') }}" class="">Chef</a></li>
         </ul>
     </div>
 </nav>
