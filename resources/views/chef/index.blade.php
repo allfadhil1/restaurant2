@@ -72,10 +72,8 @@ main {
     <div class="container-navbar">
         <!-- Menu -->
         <ul class="nav-links">
-            <li><a href="/admin/home" class="active-manual">Home Admin</a></li>
-            <li><a href="/admin/menu" >Menu</a></li>
-            <li><a href="/admin/chef">Chef</a></li>
-            <li><a href="/admin/booking">Booking Meja</a></li>
+            <li><a href="{{ route('menu.index') }}" class="">Menu</a></li>
+            <li><a href="{{ route('chef.index') }}" class="active-manual">Chef</a></li>
         </ul>
     </div>
 </nav>
@@ -84,8 +82,8 @@ main {
 
 @section('content')
 <main class="content-container">
-    <a href="{{ route('menu.create') }}" class="bg-[#fb5849] text-white px-5 py-2 rounded-lg mb-6 inline-block hover:bg-[#e04d40] transition">
-        + Tambah Menu
+    <a href="{{ route('chef.create') }}" class="bg-[#fb5849] text-white px-5 py-2 rounded-lg mb-6 inline-block hover:bg-[#e04d40] transition">
+        + Tambah Chef
     </a>
 
     @if(session('success'))
@@ -95,31 +93,25 @@ main {
     @endif
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        @foreach($menus as $menu)
+        @foreach($chefs as $chef)
             <div class="bg-white border border-[#fb5849]/30 rounded-lg shadow-lg overflow-hidden">
-                <!-- Gambar -->
-                @if($menu->gambar)
-                    <img src="{{ asset('storage/'.$menu->gambar) }}" alt="{{ $menu->nama }}" class="w-full h-48 object-cover">
-                @endif
 
                 <div class="p-4">
                     <!-- Nama Menu -->
-                    <h5 class="text-xl font-semibold text-[#fb5849] mb-2">{{ $menu->nama }}</h5>
+                    <h5 class="text-xl font-semibold text-[#fb5849] mb-2">{{ $chef->name }}</h5>
 
                     <!-- Harga -->
-                    <p class="text-lg font-bold text-[#fb5849] mb-2">Rp {{ number_format($menu->harga, 0, ',', '.') }}</p>
+                    <p class="text-lg font-bold text-[#fb5849] mb-2">{{ $chef->specialty }}</p>
 
-                    <!-- Deskripsi -->
-                    <p class="text-gray-600 text-sm mb-4">{{ $menu->deskripsi }}</p>
 
                     <div class="flex justify-between items-center">
                         <!-- Tombol Edit -->
-                        <a href="{{ route('menu.edit', $menu) }}" class="bg-[#fb5849] text-white px-4 py-2 rounded-lg hover:bg-[#e04d40] transition">
+                        <a href="{{ route('chef.edit', $chef) }}" class="bg-[#fb5849] text-white px-4 py-2 rounded-lg hover:bg-[#e04d40] transition">
                             Edit
                         </a>
 
                         <!-- Tombol Hapus -->
-                        <form action="{{ route('menu.destroy', $menu) }}" method="POST" onsubmit="return confirm('Hapus menu ini?');">
+                        <form action="{{ route('chef.destroy', $chef) }}" method="POST" onsubmit="return confirm('Hapus menu ini?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
