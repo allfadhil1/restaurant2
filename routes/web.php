@@ -25,21 +25,11 @@ Route::middleware(['auth:sanctum', 'verified', 'is_admin'])->group(function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
 });
-// route untuk chef
-Route::prefix('chef')->name('menu.chef.')->group(function () {
-    Route::get('/', [ChefController::class, 'index'])->name('index');
-    Route::get('/create', [ChefController::class, 'create'])->name('create');
-    Route::post('/', [ChefController::class, 'store'])->name('store');
-    Route::get('/{id}/edit', [ChefController::class, 'edit'])->name('edit');
-    Route::put('/{id}', [ChefController::class, 'update'])->name('update');
-    Route::delete('/{id}', [ChefController::class, 'destroy'])->name('destroy');
+
+Route::resource('chef', ChefController::class)->except('show');
+Route::resource('booking', BookingController::class)->except('show');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/bookings/create', [BookingController::class, 'create'])->name('bookings.create');
+    Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
 });
-// route untuk booking
-Route::prefix('booking')->name('menu.booking.')->group(function () {
-    Route::get('/', [BookingController::class, 'index'])->name('index');
-    Route::get('/create', [BookingController::class, 'create'])->name('create');
-    Route::post('/', [BookingController::class, 'store'])->name('store');
-    Route::get('/{id}/edit', [BookingController::class, 'edit'])->name('edit');
-    Route::put('/{id}', [BookingController::class, 'update'])->name('update');
-    Route::delete('/{id}', [BookingController::class, 'destroy'])->name('destroy');
-});
+Route::get('/bookings/{id}', [BookingController::class, 'show'])->name('bookings.show');
