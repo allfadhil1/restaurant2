@@ -9,18 +9,12 @@ class ChefController extends Controller
     public function index()
     {
         $chefs = Chef::all();
-        return view('menu.chef', [
-            'chefs' => $chefs,
-            'mode' => 'index'
-        ]);
+        return view('chef.index', compact('chefs'));
     }
 
     public function create()
     {
-        return view('menu.chef', [
-            'mode' => 'create',
-            'chef' => null
-        ]);
+        return view('chef.create');
     }
 
     public function store(Request $request)
@@ -32,16 +26,13 @@ class ChefController extends Controller
 
         Chef::create($request->all());
 
-        return redirect()->route('menu.chef.index')->with('success', 'Chef berhasil ditambahkan.');
+        return redirect()->route('chef.index')->with('success', 'Chef berhasil ditambahkan.');
     }
 
     public function edit($id)
     {
         $chef = Chef::findOrFail($id);
-        return view('menu.chef', [
-            'mode' => 'edit',
-            'chef' => $chef
-        ]);
+        return view('chef.edit', compact('chef'));
     }
 
     public function update(Request $request, $id)
@@ -54,7 +45,7 @@ class ChefController extends Controller
         $chef = Chef::findOrFail($id);
         $chef->update($request->all());
 
-        return redirect()->route('menu.chef.index')->with('success', 'Chef berhasil diperbarui.');
+        return redirect()->route('chef.index')->with('success', 'Chef berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -62,7 +53,7 @@ class ChefController extends Controller
         $chef = Chef::findOrFail($id);
         $chef->delete();
 
-        return redirect()->route('menu.chef.index')->with('success', 'Chef berhasil dihapus.');
+        return redirect()->route('chef.index')->with('success', 'Chef berhasil dihapus.');
     }
 }
 
