@@ -1,80 +1,91 @@
 @extends('layouts.app')
 
 <style>
-body {
-    margin: 0; /* Hapus margin dari body agar tidak ada margin default */
-    font-family: Arial, sans-serif; /* Pilih font yang lebih nyaman dibaca */
-}
+    body {
+        margin: 0;
+        /* Hapus margin dari body agar tidak ada margin default */
+        font-family: Arial, sans-serif;
+        /* Pilih font yang lebih nyaman dibaca */
+    }
 
-.admin-navbar {
-    background-color: #fb5849;
-    padding: 15px 0; /* Mengurangi padding atas dan bawah agar lebih rapat */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 50;
-}
+    .admin-navbar {
+        background-color: #fb5849;
+        padding: 15px 0;
+        /* Mengurangi padding atas dan bawah agar lebih rapat */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 50;
+    }
 
-.container-navbar {
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Pusatkan navbar */
-    width: 100%; /* Pastikan navbar memenuhi lebar layar */
-}
+    .container-navbar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* Pusatkan navbar */
+        width: 100%;
+        /* Pastikan navbar memenuhi lebar layar */
+    }
 
-.logo-img {
-    height: 40px;
-    width: auto;
-    margin: 0; /* Menghapus margin di sekitar logo */
-}
+    .logo-img {
+        height: 40px;
+        width: auto;
+        margin: 0;
+        /* Menghapus margin di sekitar logo */
+    }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin: 0;
-}
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        margin: 0;
+    }
 
-.nav-links li a {
-    color: white;
-    font-weight: 500;
-    text-decoration: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
+    .nav-links li a {
+        color: white;
+        font-weight: 500;
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
 
-.nav-links li a:hover {
-    background-color: #e04d40;
-}
+    .nav-links li a:hover {
+        background-color: #e04d40;
+    }
 
-.nav-links li a.active-manual {
-    background-color: #ffffff;
-    color: #fb5849;
-    font-weight: bold;
-    border-radius: 8px;
-    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #fb5849;
-    padding: 10px 15px; /* Padding ekstra agar lebih menonjol */
-}
+    .nav-links li a.active-manual {
+        background-color: #ffffff;
+        color: #fb5849;
+        font-weight: bold;
+        border-radius: 8px;
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #fb5849;
+        padding: 10px 15px;
+        /* Padding ekstra agar lebih menonjol */
+    }
 
-main {
-    margin: 20px; /* Memberikan margin pada seluruh konten utama */
-}
+    main {
+        margin: 20px;
+        /* Memberikan margin pada seluruh konten utama */
+    }
 
-.content-container {
-    margin: 20px; /* Margin pada kontainer utama konten */
-}
+    .content-container {
+        margin: 20px;
+        /* Margin pada kontainer utama konten */
+    }
 </style>
 
 <!-- ***** Header Area End ***** -->
 
+
 <nav class="admin-navbar">
     <div class="container-navbar">
-        <!-- Menu -->
+      
         <ul class="nav-links">
-            <li><a href="{{ route('menu.index') }}" class="active-manual">Menu</a></li>
-            <a href="{{ route('menu.chef.index') }}">Lihat Chef</a>
-            <li><a href="{{ route('menu.booking.index') }}">Booking Meja</a></li>
+          <li><a href="{{ route('menu.index') }}" class="active-manual">Menu</a></li>
+            <li><a href="{{ route('chef.index') }}" class="">Chef</a></li>
+            <li><a href="{{ route('bookings.create') }}" class="">Booking</a></li>
+           
         </ul>
     </div>
 </nav>

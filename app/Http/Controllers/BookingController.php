@@ -2,69 +2,69 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Booking;
+use App\Models\Menu;
+use App\Models\Table;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
-    public function index()
-    {
-        $bookings = Booking::all();
-        return view('menu.booking', [
-            'bookings' => $bookings,
-            'mode' => 'index'
-        ]);
-    }
-
     public function create()
     {
-        return view('menu.booking', [
-            'mode' => 'create',
-            'booking' => null
-        ]);
+        $menus = Menu::all();
+        $tables = Table::where('is_available', true)->get();
+        return view('bookings.create', compact('menus', 'tables'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'customer_name' => 'required|string|max:255',
-            'table_number' => 'required|integer',
-            'booking_time' => 'required|date',
+            'table_id' => 'required|exists:tables,id',
+            'menus' => 'required|array',
+            'start_time' => 'required|date',
+            'end_time' => 'required|date|after:start_time',
         ]);
 
-        Booking::create($request->all());
+        $totalPrice = 0;
 
-        return redirect()->route('menu.booking.index')->with('success', 'Booking berhasil ditambahkan.');
-    }
+        // Hitung total harga
+        foreach ($request->menus as $menuId => $menuData) {
+            $menu = Menu::find($menuId);
+            $quantity = isset($menuData['quantity']) ? intval($menuData['quantity']) : 0;
+            if ($quantity > 0) {
+                $totalPrice += $menu->harga * $quantity;
+            }
+        }
 
-    public function edit($id)
-    {
-        $booking = Booking::findOrFail($id);
-        return view('menu.booking', [
-            'mode' => 'edit',
-            'booking' => $booking
-        ]);
-    }
-
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'customer_name' => 'required|string|max:255',
-            'table_number' => 'required|integer',
-            'booking_time' => 'required|date',
+        // Buat booking
+        $booking = Booking::create([
+            'user_id' => Auth::id(),
+            'table_id' => $request->table_id,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+            'total_price' => $totalPrice,
         ]);
 
-        $booking = Booking::findOrFail($id);
-        $booking->update($request->all());
+        // Attach menu dengan quantity
+        foreach ($request->menus as $menuId => $menuData) {
+            $quantity = isset($menuData['quantity']) ? intval($menuData['quantity']) : 0;
+            if ($quantity > 0) {
+                $booking->menus()->attach($menuId, ['quantity' => $quantity]);
+            }
+        }
+        
+        $table = Table::find($request->table_id);
+        $table->is_available = false;
+        $table->save();
 
-        return redirect()->route('menu.booking.index')->with('success', 'Booking berhasil diperbarui.');
+        return redirect()->route('bookings.show', $booking->id);
     }
 
-    public function destroy($id)
+    // Tampilkan struk booking
+    public function show($id)
     {
-        $booking = Booking::findOrFail($id);
-        $booking->delete();
-
-        return redirect()->route('menu.booking.index')->with('success', 'Booking berhasil dihapus.');
+        $booking = Booking::with(['user', 'table', 'menus'])->findOrFail($id);
+        return view('bookings.show', compact('booking'));
     }
 }

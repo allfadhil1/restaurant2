@@ -34,7 +34,12 @@ class ChefController extends Controller
             'specialty' => 'required|string|max:255',
         ]);
 
-        Chef::create($request->only('name', 'specialty'));
+        
+  Chef::create($request->only('name', 'specialty'));
+
+        Chef::create($request->all());
+
+
         return redirect()->route('chef.index')->with('success', 'Chef berhasil ditambahkan.');
     }
 
@@ -43,7 +48,12 @@ class ChefController extends Controller
      */
     public function show(string $id)
     {
+
         //
+
+        $chef = Chef::findOrFail($id);
+        return view('chef.edit', compact('chef'));
+
     }
 
     /**
@@ -64,8 +74,15 @@ class ChefController extends Controller
             'specialty' => 'required|string|max:255',
         ]);
 
+ 
         $chef->update($request->only('name', 'specialty'));
         return redirect()->route('chefs.index')->with('success', 'Chef berhasil diupdate.');
+
+        $chef = Chef::findOrFail($id);
+        $chef->update($request->all());
+
+        return redirect()->route('chef.index')->with('success', 'Chef berhasil diperbarui.');
+
     }
 
     /**
@@ -74,6 +91,7 @@ class ChefController extends Controller
     public function destroy(Chef $chef)
     {
         $chef->delete();
+ 
         return redirect()->route('chef.index')->with('success', 'Chef berhasil dihapus.');
     }
 }

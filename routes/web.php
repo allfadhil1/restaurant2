@@ -26,3 +26,12 @@ Route::middleware(['auth:sanctum', 'verified', 'is_admin'])->group(function () {
 });
 
 Route::resource('chef', ChefController::class)->except('show');
+
+Route::resource('chef', ChefController::class)->except('show');
+Route::resource('booking', BookingController::class)->except('show');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/bookings/create', [BookingController::class, 'create'])->name('bookings.create');
+    Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
+});
+Route::get('/bookings/{id}', [BookingController::class, 'show'])->name('bookings.show');
+
