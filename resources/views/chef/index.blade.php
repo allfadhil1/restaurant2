@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('content')
 <style>
     body {
         margin: 0;
@@ -12,7 +13,7 @@
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         position: sticky;
         top: 0;
-        z-index: 50;
+        z-index: 999;
     }
 
     .container-navbar {
@@ -27,6 +28,7 @@
         display: flex;
         gap: 20px;
         margin: 0;
+        padding: 0;
     }
 
     .nav-links li a {
@@ -51,61 +53,41 @@
         padding: 10px 15px;
     }
 
-    main {
-        margin: 20px auto;
-        max-width: 900px;
-    }
-
     .content-container {
-        margin: 20px;
-    }
-
-    .btn-action {
-        display: inline-block;
-        padding: 8px 16px;
-        font-size: 0.875rem;
-        border-radius: 6px;
-        min-width: 100px;
-        text-align: center;
-        transition: background-color 0.3s ease;
-        white-space: nowrap;
+        margin: 20px auto;
+        max-width: 1100px;
+        padding: 0 15px;
     }
 
     .btn-action {
         display: inline-flex;
-        /* flex supaya bisa center alignment */
         align-items: center;
         justify-content: center;
         padding: 8px 16px;
         font-size: 0.875rem;
         border-radius: 6px;
         min-width: 100px;
-        /* pastikan minimal lebar sama */
         text-align: center;
         transition: background-color 0.3s ease;
         white-space: nowrap;
         height: 36px;
-        /* pastikan tinggi tombol konsisten */
         line-height: 1;
-        /* agar vertikal center */
     }
 </style>
 
 <nav class="admin-navbar">
     <div class="container-navbar">
         <ul class="nav-links">
-            <li><a href="{{ route('menu.index') }}">Menu</a></li>
+            <li><a href="{{ route('menu.index') }}" class="">Menu</a></li>
             <li><a href="{{ route('chef.index') }}" class="active-manual">Chef</a></li>
             <li><a href="{{ route('bookings.create') }}">Booking</a></li>
-            
         </ul>
     </div>
 </nav>
 
-@section('content')
 <main class="content-container">
     <a href="{{ route('chef.create') }}" class="bg-[#fb5849] text-white px-5 py-2 rounded-lg mb-6 inline-block hover:bg-[#e04d40] transition">
-        + Tambah chef
+        + Tambah Chef
     </a>
 
     @if(session('success'))
@@ -119,7 +101,7 @@
             <div class="bg-white border border-[#fb5849]/30 rounded-lg shadow-lg overflow-hidden">
                 
                 @if($chef->gambar)
-                    <img src="{{ asset('storage/'.$chef->gambar) }}" alt="{{ $chef->name }}" class="w-full h-48 object-cover">
+                    <img src="{{ asset('storage/'.$chef->gambar) }}" alt="{{ $chef->nama }}" class="w-full h-48 object-cover">
                 @endif
 
                 <div class="p-4">
@@ -129,12 +111,10 @@
                     <p class="text-gray-600 text-sm mb-4">{{ $chef->specialty }}</p>
 
                     <div class="flex justify-between items-center">
-                        <!-- Tombol Edit -->
                         <a href="{{ route('chef.edit', $chef) }}" class="bg-[#fb5849] text-white px-4 py-2 rounded-lg hover:bg-[#e04d40] transition">
                             Edit
                         </a>
 
-                        <!-- Tombol Hapus -->
                         <form action="{{ route('chef.destroy', $chef) }}" method="POST" onsubmit="return confirm('Hapus chef ini?');">
                             @csrf
                             @method('DELETE')

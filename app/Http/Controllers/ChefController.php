@@ -35,7 +35,6 @@ class ChefController extends Controller
             'gambar' => 'image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
-
         if ($request->hasFile('gambar')) {
             $validated['gambar'] = $request->file('gambar')->store('gambar', 'public');
         }
@@ -47,7 +46,7 @@ class ChefController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Menu $menu)
+    public function show(Chef $chef)
     {
         //
     }
@@ -58,6 +57,7 @@ class ChefController extends Controller
     public function edit(Chef $chef)
     {
         return view('chef.edit', compact('chef'));
+
     }
 
     /**
@@ -77,6 +77,7 @@ class ChefController extends Controller
 
         $chef->update($validated);
         return redirect()->route('chef.index')->with('success', 'Chef berhasil diupdate!');
+
     }
 
     /**

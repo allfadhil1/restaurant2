@@ -189,7 +189,8 @@
         </div>
     </section>
     <!-- ***** About Area Ends ***** -->
-<!-- ***** Menu Area Starts ***** -->
+
+ <!-- ***** Menu Area Starts ***** -->
 <section class="custom-menu-section" id="menu">
     <br>
     <style>
@@ -341,11 +342,11 @@
                     </div>
                 </div>
             </div>
+
         @endforeach
     </div>
 </section>
 
-<!-- ***** Menu Area Ends ***** -->
 
     <!-- ***** Chefs Area Starts ***** -->
     <section class="section" id="chefs">

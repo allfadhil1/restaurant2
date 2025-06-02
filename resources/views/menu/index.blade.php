@@ -77,11 +77,12 @@
 
 <!-- ***** Header Area End ***** -->
 
+
 <nav class="admin-navbar">
     <div class="container-navbar">
-        <!-- Menu -->
+      
         <ul class="nav-links">
-            <li><a href="{{ route('menu.index') }}" class="active-manual">Menu</a></li>
+          <li><a href="{{ route('menu.index') }}" class="active-manual">Menu</a></li>
             <li><a href="{{ route('chef.index') }}" class="">Chef</a></li>
             <li><a href="{{ route('bookings.create') }}" class="">Booking</a></li>
         </ul>
