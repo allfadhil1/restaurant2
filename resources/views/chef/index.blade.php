@@ -97,7 +97,7 @@
             <li><a href="{{ route('menu.index') }}">Menu</a></li>
             <li><a href="{{ route('chef.index') }}" class="active-manual">Chef</a></li>
             <li><a href="{{ route('bookings.create') }}">Booking</a></li>
-            <li><a href="{{ route('bookings.show', $booking->id) }}">Lihat</a></li>
+            
         </ul>
     </div>
 </nav>
@@ -117,6 +117,10 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach($chefs as $chef)
             <div class="bg-white border border-[#fb5849]/30 rounded-lg shadow-lg overflow-hidden">
+                
+                @if($chef->gambar)
+                    <img src="{{ asset('storage/'.$chef->gambar) }}" alt="{{ $chef->name }}" class="w-full h-48 object-cover">
+                @endif
 
                 <div class="p-4">
                     <h5 class="text-xl font-semibold text-[#fb5849] mb-2">{{ $chef->name }}</h5>

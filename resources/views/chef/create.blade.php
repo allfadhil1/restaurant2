@@ -26,14 +26,24 @@
         @endif
 
         <div>
-            <label class="block text-sm font-medium mb-1">Nama chef</label>
-            <input type="text" name="name" value="{{ old('nama', $chef->nama ?? '') }}"
+            <label class="block text-sm font-medium mb-1">Nama Chef</label>
+            <input type="text" name="name" value="{{ old('name', $chef->name ?? '') }}"
                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#fb5849]" required>
         </div>
+
         <div>
             <label class="block text-sm font-medium mb-1">Specialty</label>
             <input type="text" name="specialty" value="{{ old('specialty', $chef->specialty ?? '') }}"
                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#fb5849]" required>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium mb-1">Gambar (Opsional)</label>
+            <input type="file" name="gambar"
+                class="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4
+                       file:rounded-lg file:border-0
+                       file:bg-[#fb5849] file:text-white
+                       hover:file:bg-[#e04d40] transition cursor-pointer"/>
         </div>
 
         <div class="pt-4">
