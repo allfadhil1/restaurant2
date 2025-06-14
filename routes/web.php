@@ -4,11 +4,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ChefController;
+use App\Models\Chef;
+
+
+Route::get('/', function () {
+    $chefs = Chef::all();
+    return view('home', compact('chefs'));
+});
+Route::get('/', [HomeController::class, 'index']);
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
+Route::get('/chefs', [HomeController::class, 'chefs'])->name('chefs');
 
 Route::get ("/",[HomeController::class,"index"]);
 Route::resource('menu', MenuController::class)->except('show');

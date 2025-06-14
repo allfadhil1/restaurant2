@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+
 <style>
     body {
         margin: 0;
@@ -84,7 +84,7 @@
         </ul>
     </div>
 </nav>
-
+@section('content')
 <main class="content-container">
     <a href="{{ route('chef.create') }}" class="bg-[#fb5849] text-white px-5 py-2 rounded-lg mb-6 inline-block hover:bg-[#e04d40] transition">
         + Tambah Chef

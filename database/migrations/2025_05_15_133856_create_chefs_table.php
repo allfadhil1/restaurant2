@@ -4,6 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+Schema::create('chefs', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->string('specialty');
+    $table->string('gambar')->nullable();
+    $table->timestamps();
+});
+
 return new class extends Migration
 {
     /**
