@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\Chef;
+use App\Models\Table;
 
 class HomeController extends Controller
 {
@@ -13,8 +14,9 @@ class HomeController extends Controller
     {
         $menus = Menu::all();
         $chefs = Chef::all();
+        $tables = Table::all();
 
-        return view('home', compact('menus', 'chefs'));
+        return view('home', compact('menus', 'chefs', 'tables'));
     }
 
     // Menampilkan data chef saja di halaman chefs.blade.php

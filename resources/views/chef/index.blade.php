@@ -80,52 +80,65 @@
         <ul class="nav-links">
             <li><a href="{{ route('menu.index') }}" class="">Menu</a></li>
             <li><a href="{{ route('chef.index') }}" class="active-manual">Chef</a></li>
-            <li><a href="{{ route('bookings.create') }}">Booking</a></li>
+            <li><a href="{{ route('bookings.index') }}">Booking</a></li>
         </ul>
     </div>
 </nav>
 @section('content')
-<main class="content-container">
-    <a href="{{ route('chef.create') }}" class="bg-[#fb5849] text-white px-5 py-2 rounded-lg mb-6 inline-block hover:bg-[#e04d40] transition">
-        + Tambah Chef
-    </a>
+    <main class="content-container">
 
-    @if(session('success'))
-        <div class="mb-4 p-4 bg-[#ffe8e5] text-[#fb5849] border-l-4 border-[#fb5849] rounded-lg shadow-md">
-            {{ session('success') }}
-        </div>
-    @endif
+        @auth
+            @if (Auth::user()->usertype == 1)
+                <a href="{{ route('chef.create') }}"
+                    class="bg-[#fb5849] text-white px-5 py-2 rounded-lg mb-6 inline-block hover:bg-[#e04d40] transition">
+                    + Tambah Chef
+                </a>
+            @endif
+        @endauth
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        @foreach($chefs as $chef)
-            <div class="bg-white border border-[#fb5849]/30 rounded-lg shadow-lg overflow-hidden">
-                
-                @if($chef->gambar)
-                    <img src="{{ asset('storage/'.$chef->gambar) }}" alt="{{ $chef->nama }}" class="w-full h-48 object-cover">
-                @endif
+        @if(session('success'))
+            <div class="mb-4 p-4 bg-[#ffe8e5] text-[#fb5849] border-l-4 border-[#fb5849] rounded-lg shadow-md">
+                {{ session('success') }}
+            </div>
+        @endif
 
-                <div class="p-4">
-                    <h5 class="text-xl font-semibold text-[#fb5849] mb-2">{{ $chef->name }}</h5>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach($chefs as $chef)
+                <div class="bg-white border border-[#fb5849]/30 rounded-lg shadow-lg overflow-hidden">
 
-                    <!-- Deskripsi -->
-                    <p class="text-gray-600 text-sm mb-4">{{ $chef->specialty }}</p>
+                    @if($chef->gambar)
+                        <img src="{{ asset('storage/' . $chef->gambar) }}" alt="{{ $chef->nama }}" class="w-full h-48 object-cover">
+                    @endif
 
-                    <div class="flex justify-between items-center">
-                        <a href="{{ route('chef.edit', $chef) }}" class="bg-[#fb5849] text-white px-4 py-2 rounded-lg hover:bg-[#e04d40] transition">
-                            Edit
-                        </a>
+                    <div class="p-4">
+                        <h5 class="text-xl font-semibold text-[#fb5849] mb-2">{{ $chef->name }}</h5>
 
-                        <form action="{{ route('chef.destroy', $chef) }}" method="POST" onsubmit="return confirm('Hapus chef ini?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
-                                Hapus
-                            </button>
-                        </form>
+                        <!-- Deskripsi -->
+                        <p class="text-gray-600 text-sm mb-4">{{ $chef->specialty }}</p>
+
+                        @auth
+                            @if (Auth::user()->usertype == 1)
+                                <div class="flex justify-between items-center">
+                                    <a href="{{ route('chef.edit', $chef) }}"
+                                        class="bg-[#fb5849] text-white px-4 py-2 rounded-lg hover:bg-[#e04d40] transition">
+                                        Edit
+                                    </a>
+
+                                    <form action="{{ route('chef.destroy', $chef) }}" method="POST"
+                                        onsubmit="return confirm('Hapus chef ini?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </div>
+                            @endif
+                        @endauth
                     </div>
                 </div>
-            </div>
-        @endforeach
-    </div>
-</main>
+            @endforeach
+        </div>
+    </main>
 @endsection

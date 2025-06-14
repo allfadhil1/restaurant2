@@ -11,10 +11,8 @@
             <label for="table_id">Pilih Meja:</label>
             <select name="table_id" id="table_id" required>
                 <option value="">-- Pilih Meja --</option>
-                @foreach ($tables as $table)
-                    @if($table->is_available == '1')
-                        <option value="{{ $table->id }}">{{ $table->name }}</option>
-                    @endif
+                @foreach($tables as $table)
+                    <option value="{{ $table->id }}">{{ $table->name }}</opt>
                 @endforeach
             </select>
             @error('table_id') <div class="text-red-500">{{ $message }}</div> @enderror
