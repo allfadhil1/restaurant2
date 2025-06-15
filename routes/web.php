@@ -15,9 +15,6 @@ Route::get('/', function () {
 });
 Route::get('/', [HomeController::class, 'index']);
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::get('/chefs', [HomeController::class, 'chefs'])->name('chefs');
 
 Route::get("/", [HomeController::class, "index"]);
