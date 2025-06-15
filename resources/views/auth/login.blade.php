@@ -1,28 +1,27 @@
 <x-guest-layout>
     <style>
        body {
-    background-color: #fff5f3;
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+            background-color: #fff5f3;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-.login-container {
-    width: 120%;
-    max-width: 1800px; /* kamu bisa ubah ke 850px atau 900px jika masih kurang */
-    margin: 100 auto;
-    background-color: #ffffff;
-    border-radius: 16px;
-    padding: 2.5rem 2rem;
-    box-shadow: 0 10px 30px rgba(251, 88, 73, 0.1);
-    animation: fadeIn 0.8s ease-in-out;
-    box-sizing: border-box;
-}
-
+        .login-container {
+            width: 120%;
+            max-width: 1800px;
+            margin: 100 auto;
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 10px 30px rgba(251, 88, 73, 0.1);
+            animation: fadeIn 0.8s ease-in-out;
+            box-sizing: border-box;
+        }
 
         @keyframes fadeIn {
             from {
@@ -140,15 +139,32 @@
             margin: 0;
             padding-left: 1.2rem;
         }
-    </style>
 
+        .register-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .register-link a {
+            margin-left: 5px;
+            font-weight: 600;
+            color: #fb5849;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            color: #e14a3d;
+        }
+    </style>
 
     <div class="login-container">
 
         <!-- LOGO -->
-       <div class="logo-space">
-    <img src="{{ asset('assets/images/klassy-logo.png') }}" alt="Logo" width="100">
-</div>
+        <div class="logo-space">
+            <img src="{{ asset('assets/images/klassy-logo.png') }}" alt="Logo" width="100">
+        </div>
 
         <!-- TITLE -->
         <div class="login-title">Login ke Akun Anda</div>
@@ -199,7 +215,12 @@
                     Lupa password?
                 </a>
             @endif
+
+            <!-- REGISTER LINK -->
+            <div class="register-link">
+                Belum punya akun?
+                <a href="{{ route('register') }}">Daftar sekarang</a>
+            </div>
         </form>
     </div>
-     </div>
 </x-guest-layout>

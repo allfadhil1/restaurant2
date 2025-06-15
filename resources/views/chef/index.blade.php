@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-
 <style>
     body {
         margin: 0;
         font-family: Arial, sans-serif;
+        background-color: #fef9f8;
     }
 
     .admin-navbar {
@@ -54,97 +54,183 @@
     }
 
     .content-container {
-        margin: 20px auto;
+        margin: 30px auto;
         max-width: 1100px;
-        padding: 0 15px;
+        padding: 0 20px;
     }
 
-    .btn-action {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8px 16px;
-        font-size: 0.875rem;
-        border-radius: 6px;
-        min-width: 100px;
+    .section-heading {
+        margin-bottom: 30px;
         text-align: center;
-        transition: background-color 0.3s ease;
-        white-space: nowrap;
-        height: 36px;
-        line-height: 1;
     }
+
+    .section-heading h6 {
+        font-size: 18px;
+        color: #fb5849;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
+
+    .chef-card {
+        background-color: white;
+        border: 1px solid #fbd4cf;
+        border-radius: 16px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+        transition: 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .chef-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .chef-image {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+
+    .chef-content {
+        padding: 20px;
+        flex: 1;
+    }
+
+    .chef-name {
+        font-size: 20px;
+        font-weight: bold;
+        color: #fb5849;
+        margin-bottom: 8px;
+    }
+
+    .chef-specialty {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 16px;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .btn-add,
+    .btn-edit,
+    .btn-delete {
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        display: inline-block;
+        transition: 0.3s;
+        text-decoration: none;
+    }
+
+    .btn-add {
+        background-color: #fb5849;
+        color: white;
+        margin-bottom: 20px;
+    }
+
+    .btn-add:hover {
+        background-color: #e04d40;
+    }
+
+    .btn-edit {
+        background-color: #fb5849;
+        color: white;
+    }
+
+    .btn-edit:hover {
+        background-color: #e04d40;
+    }
+
+    .btn-delete {
+        background-color: #ef4444;
+        color: white;
+    }
+
+    .btn-delete:hover {
+        background-color: #dc2626;
+    }
+
+    .alert-success {
+        background-color: #ffe8e5;
+        color: #fb5849;
+        border-left: 4px solid #fb5849;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-weight: 500;
+    }
+
 </style>
 
 <nav class="admin-navbar">
     <div class="container-navbar">
         <ul class="nav-links">
-            <li><a href="{{ route('menu.index') }}" class="">Menu</a></li>
+            <li><a href="{{ route('menu.index') }}">Menu</a></li>
             <li><a href="{{ route('chef.index') }}" class="active-manual">Chef</a></li>
             <li><a href="{{ route('bookings.index') }}">Booking</a></li>
         </ul>
     </div>
 </nav>
+
 @section('content')
-    <main class="content-container">
+<main class="content-container">
 
-        @auth
-            @if (Auth::user()->usertype == 1)
-                <a href="{{ route('chef.create') }}"
-                    class="bg-[#fb5849] text-white px-5 py-2 rounded-lg mb-6 inline-block hover:bg-[#e04d40] transition">
-                    + Tambah Chef
-                </a>
-            @else
-                <div class="col-lg-6 offset-lg-3 text-center">
-                    <div class="section-heading">
-                        <h6>Our Chefs</h6>
-                    </div>
-                </div>
-            @endif
-        @endauth
-
-        @if(session('success'))
-            <div class="mb-4 p-4 bg-[#ffe8e5] text-[#fb5849] border-l-4 border-[#fb5849] rounded-lg shadow-md">
-                {{ session('success') }}
-            </div>
+    @auth
+        @if (Auth::user()->usertype == 1)
+            <a href="{{ route('chef.create') }}" class="btn-add">+ Tambah Chef</a>
         @endif
+    @endauth
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach($chefs as $chef)
-                <div class="bg-white border border-[#fb5849]/30 rounded-lg shadow-lg overflow-hidden">
-
-                    @if($chef->gambar)
-                        <img src="{{ asset('storage/' . $chef->gambar) }}" alt="{{ $chef->nama }}" class="w-full h-48 object-cover">
-                    @endif
-
-                    <div class="p-4">
-                        <h5 class="text-xl font-semibold text-[#fb5849] mb-2">{{ $chef->nama }}</h5>
-
-                        <!-- Deskripsi -->
-                        <p class="text-gray-600 text-sm mb-4">{{ $chef->specialty }}</p>
-
-                        @auth
-                            @if (Auth::user()->usertype == 1)
-                                <div class="flex justify-between items-center">
-                                    <a href="{{ route('chef.edit', $chef) }}"
-                                        class="bg-[#fb5849] text-white px-4 py-2 rounded-lg hover:bg-[#e04d40] transition">
-                                        Edit
-                                    </a>
-
-                                    <form action="{{ route('chef.destroy', $chef) }}" method="POST"
-                                        onsubmit="return confirm('Hapus chef ini?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
-                                            Hapus
-                                        </button>
-                                    </form>
-                                </div>
-                            @endif
-                        @endauth
-                    </div>
-                </div>
-            @endforeach
+    @if(session('success'))
+        <div class="alert-success">
+            {{ session('success') }}
         </div>
-    </main>
+    @endif
+
+    @if (!Auth::check() || Auth::user()->usertype != 1)
+        <div class="section-heading">
+            <h6>Our Chefs</h6>
+        </div>
+    @endif
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        @foreach($chefs as $chef)
+            <div class="chef-card">
+                @if($chef->gambar)
+                    <img src="{{ asset('storage/' . $chef->gambar) }}" alt="{{ $chef->nama }}" class="chef-image">
+                @endif
+
+                <div class="chef-content">
+                    <h5 class="chef-name">{{ $chef->nama }}</h5>
+                    <p class="chef-specialty">{{ $chef->specialty }}</p>
+
+                    @auth
+                        @if (Auth::user()->usertype == 1)
+                            <div class="action-buttons">
+                                <a href="{{ route('chef.edit', $chef) }}" class="btn-edit">Edit</a>
+
+                                <form action="{{ route('chef.destroy', $chef) }}" method="POST"
+                                      onsubmit="return confirm('Hapus chef ini?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-delete">Hapus</button>
+                                </form>
+                            </div>
+                        @endif
+                    @endauth
+                </div>
+            </div>
+        @endforeach
+    </div>
+</main>
 @endsection

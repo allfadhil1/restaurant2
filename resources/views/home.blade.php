@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <title>Klassy Cafe - Restaurant HTML Template</title>
+    <title>Klassy Restaurant - Restaurant HTML Template</title>
     <!-- TemplateMo 558 Klassy Cafe https://templatemo.com/tm-558-klassy-cafe -->
     <!-- Additional CSS Files -->
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
@@ -76,12 +76,10 @@
                             </li>
                             <li class="scroll-to-section"><a href="#chefs">Chefs</a></li>
                             <li class="submenu">
-                                <a href="javascript:;">Features</a>
+                                <a href="javascript:;">Cart</a>
                                 <ul>
                                     <li><a href="{{ route('bookings.index') }}">My Reservation</a></li>
-                                    <li><a href="#">Features Page 2</a></li>
-                                    <li><a href="#">Features Page 3</a></li>
-                                    <li><a href="#">Features Page 4</a></li>
+                                    
                                 </ul>
                             </li>
                             <!-- <li class=""><a rel="sponsored" href="https://templatemo.com" target="_blank">External URL</a></li> -->
@@ -115,7 +113,7 @@
                 <div class="col-lg-4">
                     <div class="left-content">
                         <div class="inner-content">
-                            <h4>Klassy Cafe</h4>
+                            <h4>Klassy Restaurant</h4>
                             <h6>THE BEST EXPERIENCE</h6>
                             <div class="main-white-button scroll-to-section">
                                 <a href="#reservation">Make A Reservation</a>
@@ -155,319 +153,424 @@
     </div>
     <!-- ***** Main Banner Area End ***** -->
 
-    <!-- ***** About Area Starts ***** -->
-    <section class="section" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-xs-12">
-                    <div class="left-text-content">
-                        <div class="section-heading">
-                            <h6>About Us</h6>
-                            <h2>We Leave A Delicious Memory For You</h2>
-                        </div>
-                        <p>Klassy Cafe adalah restoran dengan nuansa elegan dan modern yang menghadirkan pengalaman
-                            bersantap istimewa dalam suasana yang nyaman dan stylish. <br> <br>Menyajikan beragam
-                            hidangan lezat dari berbagai cita rasa, mulai dari menu klasik hingga kreasi kontemporer,
-                            Klassy Cafe cocok untuk berkumpul bersama keluarga, teman, maupun pertemuan bisnis.</p>
-                        <div class="row">
-                            <div class="col-4">
-                                <img src="assets/images/about-thumb-01.jpg" alt="">
-                            </div>
-                            <div class="col-4">
-                                <img src="assets/images/about-thumb-02.jpg" alt="">
-                            </div>
-                            <div class="col-4">
-                                <img src="assets/images/about-thumb-03.jpg" alt="">
-                            </div>
-                        </div>
-                    </div>
+   <!-- ***** About Section Starts ***** -->
+<style>
+    .about-section {
+        padding: 80px 0;
+        background-color: #fffaf7;
+    }
+
+    .about-section .heading {
+        margin-bottom: 30px;
+    }
+
+    .about-section h6 {
+        color: #fb5849;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 14px;
+        letter-spacing: 1.5px;
+    }
+
+    .about-section h2 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #333;
+        margin-top: 10px;
+    }
+
+    .about-section p {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.8;
+        margin-bottom: 30px;
+    }
+
+    .about-gallery {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .about-gallery img {
+        width: 100%;
+        border-radius: 10px;
+        object-fit: cover;
+        height: 80px;
+        transition: transform 0.3s ease;
+    }
+
+    .about-gallery img:hover {
+        transform: scale(1.05);
+    }
+
+    .about-video {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-video img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .about-video a {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 32px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 14px 18px;
+        border-radius: 50%;
+        transition: background 0.3s ease;
+    }
+
+    .about-video a:hover {
+        background-color: rgba(251, 88, 73, 0.9);
+    }
+</style>
+
+<section class="about-section" id="about">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <div class="heading">
+                    <h6>About Us</h6>
+                    <h2>We Leave A Delicious Memory For You</h2>
                 </div>
-                <div class="col-lg-6 col-md-6 col-xs-12">
-                    <div class="right-content">
-                        <div class="thumb">
-                            <a rel="nofollow" href="http://youtube.com"><i class="fa fa-play"></i></a>
-                            <img src="assets/images/about-video-bg.jpg" alt="">
-                        </div>
-                    </div>
+                <p>Klassy Cafe adalah restoran dengan nuansa elegan dan modern yang menghadirkan pengalaman
+                    bersantap istimewa dalam suasana yang nyaman dan stylish.
+                    <br><br>
+                    Menyajikan beragam hidangan lezat dari berbagai cita rasa, mulai dari menu klasik hingga kreasi
+                    kontemporer, Klassy Cafe cocok untuk berkumpul bersama keluarga, teman, maupun pertemuan bisnis.
+                </p>
+                <div class="about-gallery">
+                    <div class="col"><img src="assets/images/about-thumb-01.jpg" alt=""></div>
+                    <div class="col"><img src="assets/images/about-thumb-02.jpg" alt=""></div>
+                    <div class="col"><img src="assets/images/about-thumb-03.jpg" alt=""></div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-video">
+                    <a href="http://youtube.com" target="_blank" rel="noopener"><i class="fa fa-play"></i></a>
+                    <img src="assets/images/about-video-bg.jpg" alt="Video Background">
                 </div>
             </div>
         </div>
-    </section>
-    <!-- ***** About Area Ends ***** -->
+    </div>
+</section>
+<!-- ***** About Section Ends ***** -->
 
-    <section class="custom-menu-section" id="menu">
-        <br>
-        <style>
-            .custom-menu-section {
-                background-color: #fffaf9;
-                padding: 70px 20px;
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            }
+    <!-- ***** Menu Area Ends ***** -->
+<section class="custom-menu-section" id="menu">
+    <style>
+        .custom-menu-section {
+            background-color: #fffaf9;
+            padding: 70px 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-            .custom-menu-heading {
-                max-width: 1200px;
-                margin: 0 auto 50px;
-                text-align: center;
-            }
+        .custom-menu-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-            .custom-menu-heading h6 {
-                color: #fb5849;
-                font-size: 15px;
-                font-weight: bold;
-                margin-bottom: 8px;
-                letter-spacing: 1px;
-                text-transform: uppercase;
-            }
+        .custom-menu-heading h6 {
+            color: #fb5849;
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
-            .custom-menu-heading h2 {
-                font-size: 32px;
-                font-weight: 700;
-                color: #333;
-                line-height: 1.4;
-            }
+        .custom-menu-heading h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            line-height: 1.4;
+        }
 
-            .custom-tab-menu {
-                display: flex;
-                justify-content: center;
-                gap: 30px;
-                margin-bottom: 30px;
-            }
+        .tab-btn-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
 
-            .tab-btn {
-                background-color: #fffaf9;
-                border: none;
-                padding: 10px 15px;
-                border-radius: 12px;
-                cursor: pointer;
-                text-align: center;
-                transition: all 0.3s;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
+        .tab-btn {
+            padding: 12px 20px;
+            background-color: #fff;
+            border: 2px solid #fb5849;
+            color: #fb5849;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            text-align: center;
+            min-width: 100px;
+        }
 
-            .tab-btn img.icon {
-                width: 40px;
-                height: 40px;
-                margin-bottom: 6px;
-            }
+        .tab-btn:hover,
+        .tab-btn.active {
+            background-color: #fb5849;
+            color: #fff;
+        }
 
-            .tab-btn span {
-                font-weight: 600;
-                font-size: 14px;
-                color: #444;
-            }
+        .custom-menu-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
 
-            .tab-btn.active {
-                background-color: #fdeae7;
-            }
+        .custom-menu-card {
+            background: #fff;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
 
-            .custom-menu-wrapper {
-                max-width: 1200px;
-                margin: 0 auto;
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 24px;
+        .custom-menu-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .custom-menu-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .custom-menu-details {
+            flex-grow: 1;
+        }
+
+        .custom-menu-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        .custom-menu-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .custom-menu-price {
+            background-color: #fb5849;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .btn-menu-all {
+            background-color: #fb5849;
+            color: #fff;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+        }
+
+        .btn-menu-all:hover {
+            background-color: #e44b3d;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .custom-menu-list {
+                grid-template-columns: 1fr;
             }
 
             .custom-menu-card {
-                background: #fff;
-                border-radius: 16px;
-                overflow: hidden;
-                border: 1px solid #f3f3f3;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-                cursor: pointer;
-                display: flex;
                 flex-direction: column;
+                text-align: center;
             }
 
-            .custom-menu-card:hover {
-                transform: translateY(-6px);
-                box-shadow: 0 12px 24px rgba(251, 88, 73, 0.2);
-            }
-
-            .custom-menu-image {
-                width: 100%;
-                height: 200px;
-                object-fit: cover;
-                border-bottom: 1px solid #eee;
-            }
-
-            .custom-menu-content {
-                padding: 20px;
-                display: flex;
-                flex-direction: column;
-                flex: 1;
-            }
-
-            .custom-menu-title {
-                font-size: 20px;
-                font-weight: 600;
-                color: #fb5849;
-                margin-bottom: 6px;
+            .custom-menu-card img {
+                margin-bottom: 10px;
             }
 
             .custom-menu-price {
-                font-size: 17px;
-                font-weight: bold;
-                color: #333;
-                margin-bottom: 12px;
+                margin-top: 8px;
             }
+        }
+    </style>
 
-            .custom-menu-description {
-                font-size: 14px;
-                color: #666;
-                line-height: 1.5;
-                flex-grow: 1;
-                overflow: hidden;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-            }
+    <div class="custom-menu-heading">
+        <h6>This Week’s Special</h6>
+        <h2>Meal Offers</h2>
+    </div>
 
-            .btn-menu-all {
-                display: inline-block;
-                padding: 12px 24px;
-                background: transparent;
-                border: 2px solid #fb5849;
-                border-radius: 30px;
-                font-size: 16px;
-                color: #fb5849;
-                text-decoration: none;
-                transition: all 0.3s;
-                margin-top: 30px;
-            }
+    <div class="tab-btn-group">
+        <a href="{{ url('/') }}" class="tab-btn {{ request('category') == '' ? 'active' : '' }}">
+            Semua
+        </a>
+        @foreach($categories as $cat)
+            <a href="{{ url('/') }}?category={{ $cat->id }}"
+               class="tab-btn {{ request('category') == $cat->id ? 'active' : '' }}">
+                {{ $cat->name }}
+            </a>
+        @endforeach
+    </div>
 
-            .btn-menu-all:hover {
-                background-color: #fb5849;
-                color: #fff;
-            }
-        </style>
+    <div class="custom-menu-list">
+        @forelse($menus as $menu)
+            <div class="custom-menu-card">
+                @if($menu->gambar)
+                    <img src="{{ asset('storage/' . $menu->gambar) }}" alt="{{ $menu->nama }}">
+                @endif
+                <div class="custom-menu-details">
+                    <div class="custom-menu-title">{{ $menu->nama }}</div>
+                    <div class="custom-menu-description">
+                        {{ \Illuminate\Support\Str::words($menu->deskripsi, 10, '...') }}
+                    </div>
+                </div>
+                <div class="custom-menu-price">
+                    Rp {{ number_format($menu->harga, 0, ',', '.') }}
+                </div>
+            </div>
+        @empty
+            <p style="grid-column: 1 / -1; text-align:center; color: #888;">Tidak ada menu untuk kategori ini.</p>
+        @endforelse
+    </div>
 
-        <div class="custom-menu-heading text-center mb-6">
-            <h6 class="text-sm uppercase tracking-widest text-gray-400">This Week’s Special</h6>
-            <h2 class="text-3xl font-bold text-[#fb5849]">Meal Offers</h2>
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="{{ url('/menu') }}" class="btn-menu-all">🍽️ Lihat Menu Lengkap</a>
+    </div>
+</section>
+
+<!-- ***** Chefs Area Starts ***** -->
+<section class="section" id="chefs">
+    <style>
+        .chef-scroll-wrapper {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px 0;
+            scroll-snap-type: x mandatory;
+        }
+
+        .chef-scroll-wrapper::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .chef-scroll-wrapper::-webkit-scrollbar-thumb {
+            background-color: #fb5849;
+            border-radius: 10px;
+        }
+
+        .chef-card {
+            background-color: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 300px;
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+        }
+
+        .chef-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .chef-thumb img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+        }
+
+        .chef-info {
+            padding: 20px;
+        }
+
+        .chef-name {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .chef-specialty {
+            font-size: 16px;
+            color: #888;
+        }
+
+        /* Section Title Styling */
+        .section-heading h6 {
+            font-size: 16px;
+            color: #fb5849;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .section-heading h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .section-heading {
+            margin-bottom: 20px;
+        }
+    </style>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3 text-center">
+                <div class="section-heading">
+                    <h6>Our Chefs</h6>
+                    <h2>We offer the best ingredients for you</h2>
+                </div>
+            </div>
         </div>
 
-        <div class="flex flex-wrap gap-4 mb-6">
-            <a href="{{ url('/') }}" class="tab-btn {{ request('category') == '' ? 'active' : '' }}">
-                Semua
-            </a>
-            @foreach($categories as $cat)
-                <a href="{{ url('/') }}?category={{ $cat->id }}"
-                    class="tab-btn {{ request('category') == $cat->id ? 'active' : '' }}">
-                    {{ $cat->name }}
-                </a>
-
+        <div class="chef-scroll-wrapper">
+            @foreach ($chefs as $chef)
+                <div class="chef-card text-center">
+                    <div class="chef-thumb">
+                        @if($chef->gambar)
+                            <img src="{{ asset('storage/' . $chef->gambar) }}" alt="{{ $chef->nama }}">
+                        @endif
+                    </div>
+                    <div class="chef-info">
+                        <h4 class="chef-name">{{ $chef->nama }}</h4>
+                        <p class="chef-specialty">{{ $chef->specialty }}</p>
+                    </div>
+                </div>
             @endforeach
         </div>
+    </div>
+</section>
+<!-- ***** Chefs Area Ends ***** -->
 
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            @forelse($menus as $menu)
-                <div class="bg-white border border-[#fb5849]/30 rounded-lg shadow-lg overflow-hidden">
-                    @if($menu->gambar)
-                        <img src="{{ asset('storage/' . $menu->gambar) }}" alt="{{ $menu->nama }}"
-                            class="w-full h-48 object-cover">
-                    @endif
-
-                    <div class="p-4">
-                        <h5 class="text-xl font-semibold text-[#fb5849] mb-2">{{ $menu->nama }}</h5>
-                        <p class="text-sm text-gray-500 mb-2">Kategori: {{ $menu->category->name ?? '-' }}</p>
-                        <p class="text-lg font-bold text-[#fb5849] mb-2">Rp {{ number_format($menu->harga, 0, ',', '.') }}
-                        </p>
-                        <p class="text-gray-600 text-sm mb-4">{{ $menu->deskripsi }}</p>
-                    </div>
-                </div>
-            @empty
-                <div class="col-span-3 text-center text-gray-500">
-                    Tidak ada menu untuk kategori ini.
-                </div>
-            @endforelse
-        </div>
-
-        <div style="text-align: center;">
-            <a href="{{ url('/menu') }}" class="btn-menu-all">Lihat Menu Lengkap</a>
-        </div>
-    </section>
-
-    <!-- ***** Chefs Area Starts ***** -->
-    <section class="section" id="chefs">
-        <style>
-            .chef-card {
-                background-color: #fff;
-                border-radius: 16px;
-                overflow: hidden;
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-                transition: transform 0.3s, box-shadow 0.3s;
-                max-width: 320px;
-                width: 100%;
-                margin-bottom: 30px;
-            }
-
-            .chef-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-            }
-
-            .chef-thumb img {
-                width: 100%;
-                height: 300px;
-                object-fit: cover;
-                border-top-left-radius: 16px;
-                border-top-right-radius: 16px;
-            }
-
-            .chef-info {
-                padding: 20px;
-            }
-
-            .chef-name {
-                font-size: 22px;
-                font-weight: bold;
-                margin-bottom: 8px;
-            }
-
-            .chef-specialty {
-                font-size: 16px;
-                color: #888;
-            }
-        </style>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 offset-lg-3 text-center">
-                    <div class="section-heading">
-                        <h6>Our Chefs</h6>
-                        <h2>We offer the best ingredients for you</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-                @foreach ($chefs as $chef)
-                    <div class="col-md-6 col-lg-4 d-flex justify-content-center">
-                        <div class="chef-card text-center">
-                            <div class="chef-thumb">
-                                @if($chef->gambar)
-                                    <img src="{{ asset('storage/' . $chef->gambar) }}" alt="{{ $chef->nama }}"
-                                        class="custom-chef-image">
-                                @endif
-
-                            </div>
-                            <div class="chef-info">
-                                <h4 class="chef-name">{{ $chef->nama }}</h4>
-
-                                <p class="chef-specialty">{{ $chef->specialty }}</p>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-    <!-- ***** Chefs Area Ends ***** -->
 
     <!-- ***** Reservation Us Area Starts ***** -->
     <section class="reservation-section" id="reservation">
@@ -717,293 +820,6 @@
     </section>
     <!-- ***** Reservation Us Area Ends ***** -->
 
-
-    <!-- ***** Menu Area Starts ***** -->
-    <section class="section" id="offers">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 offset-lg-4 text-center">
-                    <div class="section-heading">
-                        <h6>Klassy Week</h6>
-                        <h2>This Week’s Special Meal Offers</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="row" id="tabs">
-                        <div class="col-lg-12">
-                            <div class="heading-tabs">
-                                <div class="row">
-                                    <div class="col-lg-6 offset-lg-3">
-                                        <ul>
-                                            <li><a href='#tabs-1'><img src="assets/images/tab-icon-01.png"
-                                                        alt="">Breakfast</a></li>
-                                            <li><a href='#tabs-2'><img src="assets/images/tab-icon-02.png"
-                                                        alt="">Lunch</a></a></li>
-                                            <li><a href='#tabs-3'><img src="assets/images/tab-icon-03.png"
-                                                        alt="">Dinner</a></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <section class='tabs-content'>
-                                <article id='tabs-1'>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="row">
-                                                <div class="left-list">
-                                                    <div class="col-lg-12">
-                                                        <div class="tab-item">
-                                                            <img src="assets/images/tab-item-01.png" alt="">
-                                                            <h4>Fresh Chicken Salad</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing
-                                                                elit, sed do.</p>
-                                                            <div class="price">
-                                                                <h6>$10.50</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="tab-item">
-                                                            <img src="assets/images/tab-item-02.png" alt="">
-                                                            <h4>Orange Juice</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing
-                                                                elit, sed do.</p>
-                                                            <div class="price">
-                                                                <h6>$8.50</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="tab-item">
-                                                            <img src="assets/images/tab-item-03.png" alt="">
-                                                            <h4>Fruit Salad</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing
-                                                                elit, sed do.</p>
-                                                            <div class="price">
-                                                                <h6>$9.90</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="row">
-                                                <div class="right-list">
-                                                    <div class="col-lg-12">
-                                                        <div class="tab-item">
-                                                            <img src="assets/images/tab-item-04.png" alt="">
-                                                            <h4>Eggs Omelette</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing
-                                                                elit, sed do.</p>
-                                                            <div class="price">
-                                                                <h6>$6.50</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="tab-item">
-                                                            <img src="assets/images/tab-item-05.png" alt="">
-                                                            <h4>Dollma Pire</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing
-                                                                elit, sed do.</p>
-                                                            <div class="price">
-                                                                <h6>$5.00</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="tab-item">
-                                                            <img src="assets/images/tab-item-06.png" alt="">
-                                                            <h4>Omelette & Cheese</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing
-                                                                elit, sed do.</p>
-                                                            <div class="price">
-                                                                <h6>$4.10</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                                <article id='tabs-2'>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="row">
-                                                <div class="left-list">
-                                                    <div class="col-lg-12">
-                                                        <div class="tab-item">
-                                                            <img src="assets/images/tab-item-04.png" alt="">
-                                                            <h4>Eggs Omelette</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing
-                                                                elit, sed do.</p>
-                                                            <div class="price">
-                                                                <h6>$14</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="tab-item">
-                                                            <img src="assets/images/tab-item-05.png" alt="">
-                                                            <h4>Dollma Pire</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing
-                                                                elit, sed do.</p>
-                                                            <div class="price">
-                                                                <h6>$18</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="tab-item">
-                                                            <img src="assets/images/tab-item-06.png" alt="">
-                                                            <h4>Omelette & Cheese</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing
-                                                                elit, sed do.</p>
-                                                            <div class="price">
-                                                                <h6>$22</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="row">
-                                                <div class="right-list">
-                                                    <div class="col-lg-12">
-                                                        <div class="tab-item">
-                                                            <img src="assets/images/tab-item-01.png" alt="">
-                                                            <h4>Fresh Chicken Salad</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing
-                                                                elit, sed do.</p>
-                                                            <div class="price">
-                                                                <h6>$10</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="tab-item">
-                                                            <img src="assets/images/tab-item-02.png" alt="">
-                                                            <h4>Orange Juice</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing
-                                                                elit, sed do.</p>
-                                                            <div class="price">
-                                                                <h6>$20</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="tab-item">
-                                                            <img src="assets/images/tab-item-03.png" alt="">
-                                                            <h4>Fruit Salad</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing
-                                                                elit, sed do.</p>
-                                                            <div class="price">
-                                                                <h6>$30</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                                <article id='tabs-3'>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="row">
-                                                <div class="left-list">
-                                                    <div class="col-lg-12">
-                                                        <div class="tab-item">
-                                                            <img src="assets/images/tab-item-05.png" alt="">
-                                                            <h4>Eggs Omelette</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing
-                                                                elit, sed do.</p>
-                                                            <div class="price">
-                                                                <h6>$14</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="tab-item">
-                                                            <img src="assets/images/tab-item-03.png" alt="">
-                                                            <h4>Orange Juice</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing
-                                                                elit, sed do.</p>
-                                                            <div class="price">
-                                                                <h6>$18</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="tab-item">
-                                                            <img src="assets/images/tab-item-02.png" alt="">
-                                                            <h4>Fruit Salad</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing
-                                                                elit, sed do.</p>
-                                                            <div class="price">
-                                                                <h6>$10</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="row">
-                                                <div class="right-list">
-                                                    <div class="col-lg-12">
-                                                        <div class="tab-item">
-                                                            <img src="assets/images/tab-item-06.png" alt="">
-                                                            <h4>Fresh Chicken Salad</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing
-                                                                elit, sed do.</p>
-                                                            <div class="price">
-                                                                <h6>$8.50</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="tab-item">
-                                                            <img src="assets/images/tab-item-01.png" alt="">
-                                                            <h4>Dollma Pire</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing
-                                                                elit, sed do.</p>
-                                                            <div class="price">
-                                                                <h6>$9</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="tab-item">
-                                                            <img src="assets/images/tab-item-04.png" alt="">
-                                                            <h4>Omelette & Cheese</h4>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing
-                                                                elit, sed do.</p>
-                                                            <div class="price">
-                                                                <h6>$11</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ***** Chefs Area Ends ***** -->
 
     <!-- ***** Footer Start ***** -->
     <footer>

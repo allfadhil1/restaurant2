@@ -12,26 +12,15 @@
         text-decoration: none;
     }
 
-    .tab-btn:hover {
-        background-color: #fb5849;
-        color: white;
-    }
-
+    .tab-btn:hover,
     .tab-btn.active {
         background-color: #fb5849;
         color: white;
-    }
-    body {
-        margin: 0;
-        /* Hapus margin dari body agar tidak ada margin default */
-        font-family: Arial, sans-serif;
-        /* Pilih font yang lebih nyaman dibaca */
     }
 
     .admin-navbar {
         background-color: #fb5849;
         padding: 15px 0;
-        /* Mengurangi padding atas dan bawah agar lebih rapat */
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         position: sticky;
         top: 0;
@@ -42,16 +31,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        /* Pusatkan navbar */
         width: 100%;
-        /* Pastikan navbar memenuhi lebar layar */
-    }
-
-    .logo-img {
-        height: 40px;
-        width: auto;
-        margin: 0;
-        /* Menghapus margin di sekitar logo */
     }
 
     .nav-links {
@@ -81,119 +61,130 @@
         border-radius: 8px;
         box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #fb5849;
         padding: 10px 15px;
-        /* Padding ekstra agar lebih menonjol */
     }
 
-    main {
-        margin: 20px;
-        /* Memberikan margin pada seluruh konten utama */
+    .menu-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: white;
+        border: 1px solid rgba(251, 88, 73, 0.3);
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        min-height: 460px;
+    }
+
+    .menu-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .tab-btn-group {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 24px;
     }
 
     .content-container {
         margin: 20px;
-        /* Margin pada kontainer utama konten */
     }
 </style>
 
-<!-- ***** Header Area End ***** -->
-
-
 <nav class="admin-navbar">
     <div class="container-navbar">
-
         <ul class="nav-links">
             <li><a href="{{ route('menu.index') }}" class="active-manual">Menu</a></li>
-            <li><a href="{{ route('chef.index') }}" class="">Chef</a></li>
-            <li><a href="{{ route('bookings.index') }}" class="">Booking</a></li>
+            <li><a href="{{ route('chef.index') }}">Chef</a></li>
+            <li><a href="{{ route('bookings.index') }}">Booking</a></li>
         </ul>
     </div>
 </nav>
 
-
-
 @section('content')
-    <main class="content-container">
+<main class="content-container">
 
-        @auth
-            @if (Auth::user()->usertype == 1)
-                <a href="{{ route('menu.create') }}"
-                    class="bg-[#fb5849] text-white px-5 py-2 rounded-lg mb-6 inline-block hover:bg-[#e04d40] transition">
-                    + Tambah Menu
-                </a>
-            @endif
-        @endauth
-
-        @if(session('success'))
-            <div class="mb-4 p-4 bg-[#ffe8e5] text-[#fb5849] border-l-4 border-[#fb5849] rounded-lg shadow-md">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        <div class="flex flex-wrap gap-4 mb-6">
-            <a href="{{ route('menu.index') }}" class="tab-btn {{ request('category') == '' ? 'active' : '' }}">
-                Semua
+    @auth
+        @if (Auth::user()->usertype == 1)
+            <a href="{{ route('menu.create') }}"
+                class="bg-[#fb5849] text-white px-5 py-2 rounded-lg mb-6 inline-block hover:bg-[#e04d40] transition">
+                + Tambah Menu
             </a>
-            @foreach($categories as $cat)
-                <a href="{{ route('menu.index', ['category' => $cat->id]) }}"
-                    class="tab-btn {{ request('category') == $cat->id ? 'active' : '' }}">
-                    {{ $cat->name }}
-                </a>
-            @endforeach
+        @endif
+    @endauth
+
+    @if(session('success'))
+        <div class="mb-4 p-4 bg-[#ffe8e5] text-[#fb5849] border-l-4 border-[#fb5849] rounded-lg shadow-md">
+            {{ session('success') }}
         </div>
+    @endif
 
+    <div class="tab-btn-group">
+        <a href="{{ route('menu.index') }}" class="tab-btn {{ request('category') == '' ? 'active' : '' }}">
+            Semua
+        </a>
+        @foreach($categories as $cat)
+            <a href="{{ route('menu.index', ['category' => $cat->id]) }}"
+                class="tab-btn {{ request('category') == $cat->id ? 'active' : '' }}">
+                {{ $cat->name }}
+            </a>
+        @endforeach
+    </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach($menus as $menu)
-                <div class="bg-white border border-[#fb5849]/30 rounded-lg shadow-lg overflow-hidden">
-                    <!-- Gambar -->
-                    @if($menu->gambar)
-                        <img src="{{ asset('storage/' . $menu->gambar) }}" alt="{{ $menu->nama }}" class="w-full h-48 object-cover">
-                    @endif
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        @foreach($menus as $menu)
+            <div class="menu-card">
+                @if($menu->gambar)
+                    <img src="{{ asset('storage/' . $menu->gambar) }}" alt="{{ $menu->nama }}" class="w-full h-48 object-cover">
+                @endif
 
-                    <div class="p-4">
-                        <!-- Nama Menu -->
+                <div class="p-4 flex flex-col justify-between h-full">
+                    <div>
                         <h5 class="text-xl font-semibold text-[#fb5849] mb-2">{{ $menu->nama }}</h5>
 
-                        <!-- Kategori -->
                         @if($menu->category)
                             <p class="text-sm text-gray-500 mb-2">
                                 Kategori: {{ $menu->category->name ?? '-' }}
                             </p>
                         @endif
 
+                        <p class="text-lg font-bold text-[#fb5849] mb-2">
+                            Rp {{ number_format($menu->harga, 0, ',', '.') }}
+                        </p>
 
-                        <!-- Harga -->
-                        <p class="text-lg font-bold text-[#fb5849] mb-2">Rp {{ number_format($menu->harga, 0, ',', '.') }}</p>
-
-                        <!-- Deskripsi -->
-                        <p class="text-gray-600 text-sm mb-4">{{ $menu->deskripsi }}</p>
-                        @if(Auth::user()->usertype == 1)
-                            <div class="flex justify-between items-center">
-                                <!-- Tombol Edit -->
-                                <a href="{{ route('menu.edit', $menu) }}"
-                                    class="bg-[#fb5849] text-white px-4 py-2 rounded-lg hover:bg-[#e04d40] transition">
-                                    Edit
-                                </a>
-
-                                <!-- Tombol Hapus -->
-                                <form action="{{ route('menu.destroy', $menu) }}" method="POST"
-                                    onsubmit="return confirm('Hapus menu ini?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
-                                        Hapus
-                                    </button>
-                                </form>
-                            </div>
-                        @else
-                            <a href="{{ route('bookings.create') }}"
-                                class="bg-[#fb5849] text-white px-4 py-2 rounded-lg hover:bg-[#e04d40] transition">Make a
-                                Reservation</a>
-                        @endif
+                        <p class="text-gray-600 text-sm mb-4">
+                            {{ \Illuminate\Support\Str::words($menu->deskripsi, 40, '...') }}
+                        </p>
                     </div>
+
+                    @if(Auth::user()->usertype == 1)
+                        <div class="flex justify-between items-center">
+                            <a href="{{ route('menu.edit', $menu) }}"
+                                class="bg-[#fb5849] text-white px-4 py-2 rounded-lg hover:bg-[#e04d40] transition">
+                                Edit
+                            </a>
+                            <form action="{{ route('menu.destroy', $menu) }}" method="POST"
+                                onsubmit="return confirm('Hapus menu ini?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+                                    Hapus
+                                </button>
+                            </form>
+                        </div>
+                    @else
+                        <a href="{{ route('bookings.create') }}"
+                            class="bg-[#fb5849] text-white mt-2 px-4 py-2 rounded-lg hover:bg-[#e04d40] transition text-center">
+                            Make a Reservation
+                        </a>
+                    @endif
                 </div>
-            @endforeach
-        </div>
-    </main>
+            </div>
+        @endforeach
+    </div>
+</main>
 @endsection
