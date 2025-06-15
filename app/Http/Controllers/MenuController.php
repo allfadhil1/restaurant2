@@ -96,3 +96,5 @@ class MenuController extends Controller
         return redirect()->route('menu.index')->with('success', 'Menu berhasil dihapus!');
     }
 }
+
+

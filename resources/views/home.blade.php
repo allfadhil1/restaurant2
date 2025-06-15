@@ -195,163 +195,221 @@
     </section>
     <!-- ***** About Area Ends ***** -->
 
-    <!-- ***** Menu Area Starts ***** -->
     <section class="custom-menu-section" id="menu">
-        <br>
-        <style>
-            .custom-menu-section {
-                background-color: #fffaf9;
-                padding: 70px 20px;
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            }
+    <br>
+    <style>
+        .custom-menu-section {
+            background-color: #fffaf9;
+            padding: 70px 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-            .custom-menu-heading {
-                max-width: 1200px;
-                margin: 0 auto 50px;
-                text-align: center;
-            }
+        .custom-menu-heading {
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            text-align: center;
+        }
 
-            .custom-menu-heading h6 {
-                color: #fb5849;
-                font-size: 15px;
-                font-weight: bold;
-                margin-bottom: 8px;
-                letter-spacing: 1px;
-                text-transform: uppercase;
-            }
+        .custom-menu-heading h6 {
+            color: #fb5849;
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
-            .custom-menu-heading h2 {
-                font-size: 32px;
-                font-weight: 700;
-                color: #333;
-                line-height: 1.4;
-            }
+        .custom-menu-heading h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            line-height: 1.4;
+        }
 
-            .custom-menu-wrapper {
-                max-width: 1200px;
-                margin: 0 auto;
-                display: flex;
-                gap: 24px;
-                overflow-x: auto;
-                padding-bottom: 16px;
-                scroll-behavior: smooth;
-            }
+        .custom-tab-menu {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
 
-            .custom-menu-card {
-                width: 340px;
-                height: 470px;
-                background: #fff;
-                border-radius: 16px;
-                overflow: hidden;
-                border: 1px solid #f3f3f3;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-                flex-shrink: 0;
-                cursor: pointer;
-                display: flex;
-                flex-direction: column;
-            }
+        .tab-btn {
+            background-color: #fffaf9;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-            .custom-menu-card:hover {
-                transform: translateY(-6px);
-                box-shadow: 0 12px 24px rgba(251, 88, 73, 0.2);
-            }
+        .tab-btn img.icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 6px;
+        }
 
-            .custom-menu-image {
-                width: 100%;
-                height: 200px;
-                object-fit: cover;
-                border-bottom: 1px solid #eee;
-            }
+        .tab-btn span {
+            font-weight: 600;
+            font-size: 14px;
+            color: #444;
+        }
 
-            .custom-menu-content {
-                padding: 20px;
-                display: flex;
-                flex-direction: column;
-                flex: 1;
-            }
+        .tab-btn.active {
+            background-color: #fdeae7;
+        }
 
-            .custom-menu-title {
-                font-size: 20px;
-                font-weight: 600;
-                color: #fb5849;
-                margin-bottom: 6px;
-            }
+        .custom-menu-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
 
-            .custom-menu-price {
-                font-size: 17px;
-                font-weight: bold;
-                color: #333;
-                margin-bottom: 12px;
-            }
+        .custom-menu-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #f3f3f3;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
 
-            .custom-menu-description {
-                font-size: 14px;
-                color: #666;
-                line-height: 1.5;
-                flex-grow: 1;
-                overflow: hidden;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                /* Limit to 3 lines */
-                -webkit-box-orient: vertical;
-            }
+        .custom-menu-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(251, 88, 73, 0.2);
+        }
 
-            .read-more {
-                margin-top: 15px;
-                text-align: right;
-            }
+        .custom-menu-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
 
-            .read-more a {
-                color: #fb5849;
-                text-decoration: none;
-                font-size: 14px;
-                font-weight: 500;
-            }
+        .custom-menu-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
 
-            .read-more a:hover {
-                text-decoration: underline;
-            }
+        .custom-menu-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fb5849;
+            margin-bottom: 6px;
+        }
 
-            .custom-menu-wrapper::-webkit-scrollbar {
-                height: 8px;
-            }
+        .custom-menu-price {
+            font-size: 17px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 12px;
+        }
 
-            .custom-menu-wrapper::-webkit-scrollbar-thumb {
-                background: #fb5849;
-                border-radius: 4px;
-            }
+        .custom-menu-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+            flex-grow: 1;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
 
-            .custom-menu-wrapper::-webkit-scrollbar-track {
-                background: #f1f1f1;
-            }
-        </style>
+        .btn-menu-all {
+            display: inline-block;
+            padding: 12px 24px;
+            background: transparent;
+            border: 2px solid #fb5849;
+            border-radius: 30px;
+            font-size: 16px;
+            color: #fb5849;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 30px;
+        }
 
-        <div class="custom-menu-heading">
-            <h6>Our Menu</h6>
-            <h2>Explore Our Signature Cakes and Sweet Creations</h2>
-        </div>
+        .btn-menu-all:hover {
+            background-color: #fb5849;
+            color: #fff;
+        }
+    </style>
 
-        <div class="custom-menu-wrapper">
-            @foreach($menus as $menu)
-                <div class="custom-menu-card" title="{{ $menu->nama }}">
-                    @if($menu->gambar)
-                        <img src="{{ asset('storage/' . $menu->gambar) }}" alt="{{ $menu->nama }}" class="custom-menu-image">
-                    @endif
+    <div class="custom-menu-heading">
+        <h6>This Week’s Special</h6>
+        <h2>Meal Offers</h2>
+    </div>
 
-                    <div class="custom-menu-content">
-                        <h5 class="custom-menu-title">{{ $menu->nama }}</h5>
-                        <p class="custom-menu-price">Rp {{ number_format($menu->harga, 0, ',', '.') }}</p>
-                        <p class="custom-menu-description">{{ $menu->deskripsi }}</p>
-                        <div class="read-more">
-                            <a href="{{ url('/menu/' . $menu->id) }}">Selengkapnya →</a>
-                        </div>
-                    </div>
+    <div class="custom-tab-menu">
+        <button class="tab-btn active" onclick="filterMenu('breakfast', this)">
+            <img src="{{ asset('icons/breakfast.png') }}" alt="Breakfast" class="icon">
+            <span>Breakfast</span>
+        </button>
+        <button class="tab-btn" onclick="filterMenu('lunch', this)">
+            <img src="{{ asset('icons/lunch.png') }}" alt="Lunch" class="icon">
+            <span>Lunch</span>
+        </button>
+        <button class="tab-btn" onclick="filterMenu('dinner', this)">
+            <img src="{{ asset('icons/dinner.png') }}" alt="Dinner" class="icon">
+            <span>Dinner</span>
+        </button>
+    </div>
+
+    <div class="custom-menu-wrapper" id="menu-container">
+        @foreach($menus as $menu)
+            <div class="custom-menu-card category-{{ strtolower($menu->category->name) }}">
+                @if($menu->gambar)
+                    <img src="{{ asset('storage/' . $menu->gambar) }}" class="custom-menu-image" alt="{{ $menu->nama }}">
+                @endif
+                <div class="custom-menu-content">
+                    <h5 class="custom-menu-title">{{ $menu->nama }}</h5>
+                    <p class="text-sm text-gray-500 mb-2">Kategori: {{ $menu->category->name ?? '-' }}</p>
+                    <p class="custom-menu-price">Rp {{ number_format($menu->harga, 0, ',', '.') }}</p>
+                    <p class="custom-menu-description">{{ $menu->deskripsi }}</p>
                 </div>
+            </div>
+        @endforeach
+    </div>
 
-            @endforeach
-        </div>
-    </section>
+    <div style="text-align: center;">
+        <a href="{{ url('/menu') }}" class="btn-menu-all">Lihat Menu Lengkap</a>
+    </div>
+
+    <script>
+        function filterMenu(category, btn) {
+            // Toggle active button
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Filter cards
+            let cards = document.querySelectorAll('.custom-menu-card');
+            let shown = 0;
+            cards.forEach(card => {
+                if (card.classList.contains('category-' + category) && shown < 5) {
+                    card.style.display = 'flex';
+                    shown++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Load default category
+        window.addEventListener('DOMContentLoaded', () => {
+            filterMenu('breakfast', document.querySelector('.tab-btn.active'));
+        });
+    </script>
+</section>
 
     <!-- ***** Chefs Area Starts ***** -->
     <section class="section" id="chefs">
