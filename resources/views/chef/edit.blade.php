@@ -27,7 +27,7 @@
 
         <div>
             <label class="block text-sm font-medium mb-1">Nama chef</label>
-            <input type="text" name="name" value="{{ old('nama', $chef->name ?? '') }}"
+            <input type="text" name="nama" value="{{ old('nama', $chef->nama ?? '') }}"
                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
         </div>
 

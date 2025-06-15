@@ -109,6 +109,19 @@
             </div>
         @endif
 
+        <form method="GET" action="{{ route('menu.index') }}" class="mb-6">
+            <select name="category" onchange="this.form.submit()"
+                class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#fb5849]">
+                <option value="">-- Semua Kategori --</option>
+                @foreach($categories as $cat)
+                    <option value="{{ $cat->id }}" {{ request('category') == $cat->id ? 'selected' : '' }}>
+                        {{ $cat->name }}
+                    </option>
+                @endforeach
+            </select>
+        </form>
+
+
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($menus as $menu)
                 <div class="bg-white border border-[#fb5849]/30 rounded-lg shadow-lg overflow-hidden">
@@ -121,34 +134,43 @@
                         <!-- Nama Menu -->
                         <h5 class="text-xl font-semibold text-[#fb5849] mb-2">{{ $menu->nama }}</h5>
 
+                        <!-- Kategori -->
+                        @if($menu->category)
+                            <p class="text-sm text-gray-500 mb-2">
+                                Kategori: {{ $menu->category->name ?? '-' }}
+                            </p>
+                        @endif
+
+
                         <!-- Harga -->
                         <p class="text-lg font-bold text-[#fb5849] mb-2">Rp {{ number_format($menu->harga, 0, ',', '.') }}</p>
 
                         <!-- Deskripsi -->
                         <p class="text-gray-600 text-sm mb-4">{{ $menu->deskripsi }}</p>
-                            @if(Auth::user()->usertype == 1)
-                                <div class="flex justify-between items-center">
-                                    <!-- Tombol Edit -->
-                                    <a href="{{ route('menu.edit', $menu) }}"
-                                        class="bg-[#fb5849] text-white px-4 py-2 rounded-lg hover:bg-[#e04d40] transition">
-                                        Edit
-                                    </a>
+                        @if(Auth::user()->usertype == 1)
+                            <div class="flex justify-between items-center">
+                                <!-- Tombol Edit -->
+                                <a href="{{ route('menu.edit', $menu) }}"
+                                    class="bg-[#fb5849] text-white px-4 py-2 rounded-lg hover:bg-[#e04d40] transition">
+                                    Edit
+                                </a>
 
-                                    <!-- Tombol Hapus -->
-                                    <form action="{{ route('menu.destroy', $menu) }}" method="POST"
-                                        onsubmit="return confirm('Hapus menu ini?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
-                                            Hapus
-                                        </button>
-                                    </form>
-                                </div>
-                            @else
-                                <a href="{{ route('bookings.create') }}"
-                                class="bg-[#fb5849] text-white px-4 py-2 rounded-lg hover:bg-[#e04d40] transition">Make a Reservation</a>    
-                            @endif
+                                <!-- Tombol Hapus -->
+                                <form action="{{ route('menu.destroy', $menu) }}" method="POST"
+                                    onsubmit="return confirm('Hapus menu ini?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+                                        Hapus
+                                    </button>
+                                </form>
+                            </div>
+                        @else
+                            <a href="{{ route('bookings.create') }}"
+                                class="bg-[#fb5849] text-white px-4 py-2 rounded-lg hover:bg-[#e04d40] transition">Make a
+                                Reservation</a>
+                        @endif
                     </div>
                 </div>
             @endforeach

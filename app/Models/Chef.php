@@ -10,6 +10,6 @@ class Chef extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'specialty', 'gambar'];
+    protected $fillable = ['nama', 'specialty', 'gambar'];
 }
 

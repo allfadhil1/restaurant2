@@ -30,7 +30,7 @@ class ChefController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
             'specialty' => 'required|string|max:255',
             'gambar' => 'image|mimes:jpg,jpeg,png|max:2048'
         ]);
@@ -66,7 +66,7 @@ class ChefController extends Controller
     public function update(Request $request, Chef $chef)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
             'specialty' => 'required|string|max:255',
             'gambar' => 'image|mimes:jpg,jpeg,png|max:2048'
         ]);

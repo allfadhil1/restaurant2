@@ -12,6 +12,11 @@ class Menu extends Model
         return $this->belongsToMany(Booking::class)->withPivot('quantity')->withTimestamps();
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     use HasFactory;
-    protected $fillable = ['nama', 'deskripsi', 'harga', 'gambar'];
+    protected $fillable = ['nama', 'deskripsi', 'harga', 'gambar', 'category_id',];
 }

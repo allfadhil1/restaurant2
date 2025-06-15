@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -10,18 +11,29 @@ class MenuController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $menus = Menu::all();
-        return view('menu.index', compact('menus'));
+        $categories = \App\Models\Category::all(); // ambil semua kategori
+
+        $menus = Menu::with('category');
+
+        if ($request->has('category') && $request->category != '') {
+            $menus->where('category_id', $request->category);
+        }
+
+        $menus = $menus->get();
+
+        return view('menu.index', compact('menus', 'categories'));
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('menu.create');
+        $categories = Category::all();
+        return view('menu.create', compact('categories'));
     }
 
     /**
@@ -30,12 +42,12 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama' => 'required',
+            'nama' => 'required|string|max:255',
             'harga' => 'required|numeric',
-            'deskripsi' => 'nullable',
-            'gambar' => 'image|mimes:jpg,jpeg,png|max:2048'
+            'deskripsi' => 'nullable|string',
+            'category_id' => 'required|exists:categories,id',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
-
 
         if ($request->hasFile('gambar')) {
             $validated['gambar'] = $request->file('gambar')->store('gambar', 'public');
@@ -46,19 +58,12 @@ class MenuController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Menu $menu)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Menu $menu)
     {
-        return view('menu.edit', compact('menu'));
+        $categories = Category::all();
+        return view('menu.edit', compact('menu', 'categories'));
     }
 
     /**
@@ -67,10 +72,11 @@ class MenuController extends Controller
     public function update(Request $request, Menu $menu)
     {
         $validated = $request->validate([
-            'nama' => 'required',
+            'nama' => 'required|string|max:255',
             'harga' => 'required|numeric',
-            'deskripsi' => 'nullable',
-            'gambar' => 'image|mimes:jpg,jpeg,png|max:2048'
+            'deskripsi' => 'nullable|string',
+            'category_id' => 'required|exists:categories,id',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -78,7 +84,7 @@ class MenuController extends Controller
         }
 
         $menu->update($validated);
-        return redirect()->route('menu.index')->with('success', 'Menu berhasil diupdate!');
+        return redirect()->route('menu.index')->with('success', 'Menu berhasil diperbarui!');
     }
 
     /**

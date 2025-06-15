@@ -7,6 +7,7 @@ use App\Http\Controllers\ChefController;
 use App\Http\Controllers\BookingController;
 use App\Models\Chef;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
     $chefs = Chef::all();
@@ -53,3 +54,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reservasi', [ReservationController::class, 'index'])->name('reservations.index');
     Route::post('/reservasi', [ReservationController::class, 'store'])->name('reservations.store');
 });
+
+Route::resource('category', CategoryController::class);

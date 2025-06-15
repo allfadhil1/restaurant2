@@ -117,7 +117,7 @@
                     @endif
 
                     <div class="p-4">
-                        <h5 class="text-xl font-semibold text-[#fb5849] mb-2">{{ $chef->name }}</h5>
+                        <h5 class="text-xl font-semibold text-[#fb5849] mb-2">{{ $chef->nama }}</h5>
 
                         <!-- Deskripsi -->
                         <p class="text-gray-600 text-sm mb-4">{{ $chef->specialty }}</p>
