@@ -431,111 +431,253 @@
     <!-- ***** Chefs Area Ends ***** -->
 
     <!-- ***** Reservation Us Area Starts ***** -->
-    <section class="section" id="reservation">
-        <div class="container">
-            @if(session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
-            <div class="row">
-                <div class="col-lg-6 align-self-center">
-                    <div class="left-text-content">
-                        <div class="section-heading">
-                            <h6>Contact Us</h6>
-                            <h2>Here You Can Make A Reservation Or Just walkin to our cafe</h2>
-                        </div>
-                        <p>Donec pretium est orci, non vulputate arcu hendrerit a. Fusce a eleifend riqsie, namei
-                            sollicitudin urna diam, sed commodo purus porta ut.</p>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="phone">
-                                    <i class="fa fa-phone"></i>
-                                    <h4>Phone Numbers</h4>
-                                    <span><a href="#">080-090-0990</a><br><a href="#">080-090-0880</a></span>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="message">
-                                    <i class="fa fa-envelope"></i>
-                                    <h4>Emails</h4>
-                                    <span><a href="#">hello@company.com</a><br><a href="#">info@company.com</a></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="contact-form">
-                        <form id="contact" action="{{ route('bookings.store') }}" method="post">
-                            @csrf
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <h4>Table Reservation</h4>
-                                </div>
-                                <div class="col-lg-6 col-sm-12">
-                                    <fieldset>
-                                        <input name="name" type="text" id="name"
-                                            value="{{ Auth::check() ? Auth::user()->name : '' }}" {{ Auth::check() ? 'readonly' : 'required' }} required="">
-                                    </fieldset>
-                                </div>
-                                <div class="col-lg-6 col-sm-12">
-                                    <fieldset>
-                                        <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*"
-                                            value="{{ Auth::check() ? Auth::user()->email : '' }}" {{ Auth::check() ? 'readonly' : 'required' }} required="">
-                                    </fieldset>
-                                </div>
-                                <div class="col-lg-12">
-                                    <fieldset>
-                                        <select name="table_id" required>
-                                            <option value="">-- Pilih Meja --</option>
-                                            @foreach($tables as $table)
-                                                <option value="{{ $table->id }}">{{ $table->name }}</opt>
-                                            @endforeach
-                                        </select>
-                                        @error('table_id') <div class="text-red-500">{{ $message }}</div> @enderror
-                                    </fieldset>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Menu:</label>
-                                            @foreach ($menus as $menu)
-                                                <div>
-                                                    <label>
-                                                        {{ $menu->nama }} (Rp
-                                                        {{ number_format($menu->harga, 0, ',', '.') }})
-                                                        <input type="number" name="menus[{{ $menu->id }}][quantity]"
-                                                            value="0" min="0" />
-                                                    </label>
-                                                </div>
-                                            @endforeach
-                                            @error('menus') <div class="text-red-500">{{ $message }}</div> @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="start_time">Mulai Booking:</label>
-                                    <input type="datetime-local" name="start_time" id="start_time" required>
-                                    @error('start_time') <div class="text-red-500">{{ $message }}</div> @enderror
-                                </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <label for="end_time">Selesai Booking:</label>
-                                    <input type="datetime-local" name="end_time" id="end_time" required>
-                                    @error('end_time') <div class="text-red-500">{{ $message }}</div> @enderror
-                                </div>
-                                <div class="col-lg-12">
-                                    <fieldset>
-                                        <button type="submit" id="form-submit" class="main-button-icon">Make A
-                                            Reservation</button>
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+<section class="reservation-section" id="reservation">
+    <style>
+        .reservation-section {
+            padding: 60px 20px;
+            background-color: #f7f7f7;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .reservation-container {
+            max-width: 1100px;
+            margin: auto;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .reservation-info {
+            flex: 1 1 35%;
+            background-color: #fb5849;
+            color: white;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .reservation-form {
+            flex: 1 1 65%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .reservation-info h6 {
+            text-transform: uppercase;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .reservation-info h2 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .reservation-info p {
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .contact-box {
+            margin-bottom: 20px;
+        }
+
+        .contact-box i {
+            color: white;
+            margin-right: 8px;
+        }
+
+        .contact-box h4 {
+            margin: 5px 0;
+            font-size: 16px;
+            color: white;
+        }
+
+        .contact-box a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            font-size: 14px;
+        }
+
+        .form-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 14px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .menu-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .menu-item input {
+            width: 60px;
+            padding: 4px;
+            font-size: 14px;
+        }
+
+        .submit-btn {
+            background-color: #fb5849;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #e04b3c;
+        }
+
+        @media (max-width: 768px) {
+            .reservation-info,
+            .reservation-form {
+                flex: 1 1 100%;
+            }
+
+            .menu-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .text-danger {
+            color: red;
+            font-size: 13px;
+        }
+
+        .text-success {
+            color: green;
+            margin-bottom: 16px;
+        }
+    </style>
+
+    <div class="reservation-container">
+        <div class="reservation-info">
+            <h6>Contact Us</h6>
+            <h2>Reservasi Meja atau Datang Langsung</h2>
+            <p>Kami siap melayani Anda untuk reservasi meja maupun kunjungan langsung ke cafe kami.</p>
+
+            <div class="contact-box">
+                <i class="fa fa-phone"></i>
+                <h4>Phone Numbers</h4>
+                <a href="#">080-090-0990</a>
+                <a href="#">080-090-0880</a>
+            </div>
+
+            <div class="contact-box">
+                <i class="fa fa-envelope"></i>
+                <h4>Emails</h4>
+                <a href="#">hello@company.com</a>
+                <a href="#">info@company.com</a>
             </div>
         </div>
-    </section>
-    <!-- ***** Reservation Area Ends ***** -->
+
+        <div class="reservation-form">
+            @if(session('success'))
+                <div class="text-success">{{ session('success') }}</div>
+            @endif
+            <form id="contact" action="{{ route('bookings.store') }}" method="post">
+                @csrf
+                <div class="form-title">Table Reservation</div>
+
+                <div class="form-group">
+                    <label for="name">Nama:</label>
+                    <input name="name" type="text" id="name"
+                        value="{{ Auth::check() ? Auth::user()->name : '' }}"
+                        {{ Auth::check() ? 'readonly' : 'required' }} required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input name="email" type="email" id="email"
+                        value="{{ Auth::check() ? Auth::user()->email : '' }}"
+                        {{ Auth::check() ? 'readonly' : 'required' }} required>
+                </div>
+
+                <div class="form-group">
+                    <label for="table_id">Pilih Meja:</label>
+                    <select name="table_id" id="table_id" required>
+                        <option value="">-- Pilih Meja --</option>
+                        @foreach($tables as $table)
+                            <option value="{{ $table->id }}">{{ $table->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('table_id') <div class="text-danger">{{ $message }}</div> @enderror
+                </div>
+
+                <div class="form-group">
+                    <label>Menu:</label>
+                    <div class="menu-list">
+                        @foreach ($menus as $menu)
+                            <div class="menu-item">
+                                <span>{{ $menu->nama }} <small>(Rp {{ number_format($menu->harga, 0, ',', '.') }})</small></span>
+                                <input type="number" name="menus[{{ $menu->id }}][quantity]" value="0" min="0">
+                            </div>
+                        @endforeach
+                    </div>
+                    @error('menus') <div class="text-danger">{{ $message }}</div> @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="start_time">Mulai Booking:</label>
+                    <input type="datetime-local" name="start_time" id="start_time" required>
+                    @error('start_time') <div class="text-danger">{{ $message }}</div> @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="end_time">Selesai Booking:</label>
+                    <input type="datetime-local" name="end_time" id="end_time" required>
+                    @error('end_time') <div class="text-danger">{{ $message }}</div> @enderror
+                </div>
+
+                <button type="submit" class="submit-btn">Make A Reservation</button>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- ***** Reservation Us Area Ends ***** -->
+
 
     <!-- ***** Menu Area Starts ***** -->
     <section class="section" id="offers">

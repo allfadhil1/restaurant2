@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->string('jenis');
             $table->text('deskripsi')->nullable();
             $table->decimal('harga', 8, 2);
             $table->string('gambar')->nullable();

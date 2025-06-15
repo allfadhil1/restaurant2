@@ -1,9 +1,130 @@
 @extends('layouts.app')
 
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
+    .struk-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .receipt-container {
+        width: 48%;
+        background: #fff;
+        padding: 25px 30px;
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        font-family: 'Segoe UI', sans-serif;
+        box-sizing: border-box;
+        transition: background-color 0.3s ease;
+    }
+
+    .receipt-container:hover {
+        background-color: #fff5f3;
+        cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+        .receipt-container {
+            width: 100%;
+        }
+    }
+
+    .receipt-header {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .receipt-header h2 {
+        color: #fb5849;
+        margin-bottom: 5px;
+    }
+
+    .receipt-header p {
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+    .divider {
+        border-top: 2px dashed #fb5849;
+        margin: 20px 0;
+    }
+
+    .receipt-info {
+        margin-bottom: 10px;
+    }
+
+    .receipt-info strong {
+        width: 100px;
+        display: inline-block;
+        color: #333;
+    }
+
+    .menu-title {
+        margin-top: 20px;
+        color: #fb5849;
+        font-weight: bold;
+    }
+
+    .menu-item {
+        display: flex;
+        justify-content: space-between;
+        margin: 5px 0;
+        font-size: 0.95rem;
+    }
+
+    .menu-item span:first-child {
+        color: #333;
+    }
+
+    .total {
+        margin-top: 15px;
+        text-align: right;
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: #fb5849;
+        border-top: 1px dashed #ccc;
+        padding-top: 10px;
+    }
+
+    .action-btns {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        border-radius: 6px;
+        text-decoration: none;
+        color: white;
+        text-align: center;
+        border: none;
+        min-width: 90px;
+    }
+
+    .edit-btn {
+        background-color: #fb5849;
+    }
+
+    .edit-btn:hover {
+        background-color: #e04d40;
+    }
+
+    .delete-btn {
+        background-color: #dc3545;
+    }
+
+    .delete-btn:hover {
+        background-color: #c82333;
+    }
+
+    form {
+        display: inline;
     }
 
     .admin-navbar {
@@ -12,7 +133,7 @@
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         position: sticky;
         top: 0;
-        z-index: 999;
+        z-index: 50;
     }
 
     .container-navbar {
@@ -27,7 +148,6 @@
         display: flex;
         gap: 20px;
         margin: 0;
-        padding: 0;
     }
 
     .nav-links li a {
@@ -52,106 +172,78 @@
         padding: 10px 15px;
     }
 
-    .content-container {
-        margin: 20px auto;
-        max-width: 1100px;
-        padding: 0 15px;
-    }
+    .edit-btn,
+.delete-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    color: white;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px; /* Tambahan agar fix ukurannya */
+    min-width: 90px;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+}
 
-    .btn-action {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8px 16px;
-        font-size: 0.875rem;
-        border-radius: 6px;
-        min-width: 100px;
-        text-align: center;
-        transition: background-color 0.3s ease;
-        white-space: nowrap;
-        height: 36px;
-        line-height: 1;
-    }
 </style>
 
 <nav class="admin-navbar">
     <div class="container-navbar">
         <ul class="nav-links">
-            <li><a href="{{ route('menu.index') }}" class="">Menu</a></li>
-            <li><a href="{{ route('chef.index') }}" class="">Chef</a></li>
+            <li><a href="{{ route('menu.index') }}">Menu</a></li>
+            <li><a href="{{ route('chef.index') }}">Chef</a></li>
             <li><a href="{{ route('bookings.index') }}" class="active-manual">Booking</a></li>
         </ul>
     </div>
 </nav>
 
 @section('content')
-    @if (Auth::user()->usertype == 1)
-        <h1>Daftar Booking</h1>
-    @else
-        <h1>My Reservation</h1>
-    @endif
+<div class="struk-wrapper">
+    @foreach($bookings as $booking)
+        <div class="receipt-container">
+            <div class="receipt-header">
+                <h2>Struk Booking</h2>
+                <p>{{ $booking->created_at->format('d M Y, H:i') }}</p>
+            </div>
 
-    @if($bookings->isEmpty())
-        <p>Tidak ada data booking.</p>
-    @else
-        <table class="table-auto w-full border-collapse">
-            @if (Auth::user()->usertype == 1)
-                <a href="{{ route('bookings.create') }}"
-                    class="bg-[#fb5849] text-white px-5 py-2 rounded-lg mb-6 inline-block hover:bg-[#e04d40] transition">
-                    + Booking
-                </a>
-            @endif
-            <thead>
-                <tr>
-                    @if(Auth::user()->usertype == 1)
-                        <th class="border px-4 py-2">User</th>
-                    @endif
-                    <th class="border px-4 py-2">Mulai Booking</th>
-                    <th class="border px-4 py-2">Selesai Booking</th>
-                    <th class="border px-4 py-2">Meja</th>
-                    <th class="border px-4 py-2">Harga</th>
-                    <th class="border px-4 py-2">Menu</th>
-                    <th class="border px-4 py-2">Edit</th>
-                    <th class="border px-4 py-2">Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($bookings as $booking)
-                    <tr>
-                        @if(Auth::user()->usertype == 1)
-                            <td class="border px-4 py-2">{{ $booking->user->name ?? 'Tidak diketahui' }}</td>
+            <div class="divider"></div>
+
+            <div class="receipt-info"><strong>Nama:</strong> {{ $booking->user->name ?? 'Tidak diketahui' }}</div>
+            <div class="receipt-info"><strong>Meja:</strong> {{ $booking->table->name ?? '-' }}</div>
+            <div class="receipt-info"><strong>Mulai:</strong> {{ \Carbon\Carbon::parse($booking->start_time)->format('d M Y H:i') }}</div>
+            <div class="receipt-info"><strong>Selesai:</strong> {{ \Carbon\Carbon::parse($booking->end_time)->format('d M Y H:i') }}</div>
+
+            <div class="menu-title">Menu Dipesan:</div>
+            @if($booking->menus->isEmpty())
+                <p>-</p>
+            @else
+                @foreach($booking->menus as $menu)
+                    <div class="menu-item">
+                        <span>{{ $menu->nama }} x {{ $menu->pivot->quantity }}</span>
+                        @if($loop->first)
+                            <span>Rp {{ number_format($booking->total_price, 0, ',', '.') }}</span>
                         @endif
-                        <td class="border px-4 py-2">
-                            {{ \Carbon\Carbon::parse($booking->start_time)->translatedFormat('l, d F Y \p\u\k\u\l H:i') }}
-                        </td>
-                        <td class="border px-4 py-2">
-                            {{ \Carbon\Carbon::parse($booking->end_time)->translatedFormat('l, d F Y \p\u\k\u\l H:i') }}
-                        </td>
-                        <td class="border px-4 py-2">{{ $booking->table->name ?? '-' }}</td>
-                        <td class="border px-4 py-2">{{ $booking->total_price }}</td>
-                        <td class="border px-4 py-2">
-                            @if($booking->menus->isEmpty())
-                                -
-                            @else
-                                @foreach($booking->menus as $menu)
-                                    {{ $menu->nama }} ({{ $menu->pivot->quantity }}){{ !$loop->last ? ',' : '' }}
-                                @endforeach
-                            @endif
-                        </td>
-                        <td class="border px-4 py-2">
-                            <a href="{{ route('bookings.edit', $booking->id) }}" class="text-blue-600 hover:underline">Edit</a>
-                        </td>
-                        <td class="border px-4 py-2">
-                            <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST"
-                                onsubmit="return confirm('Yakin ingin menghapus booking ini?')" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-600 hover:underline ml-2">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
+                    </div>
                 @endforeach
-            </tbody>
-        </table>
-    @endif
+            @endif
+
+            <div class="total">Total: Rp {{ number_format($booking->total_price, 0, ',', '.') }}</div>
+
+            <div class="action-btns">
+                <a href="{{ route('bookings.edit', $booking->id) }}" class="edit-btn">Edit</a>
+                <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST"
+                      onsubmit="return confirm('Yakin ingin menghapus booking ini?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="delete-btn">Hapus</button>
+                </form>
+            </div>
+        </div>
+    @endforeach
+</div>
 @endsection
