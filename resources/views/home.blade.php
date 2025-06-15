@@ -85,7 +85,7 @@
                                 </ul>
                             </li>
                             <!-- <li class=""><a rel="sponsored" href="https://templatemo.com" target="_blank">External URL</a></li> -->
-                            <li class="scroll-to-section"><a href="#reservation">Contact Us</a></li>
+                            <li class="scroll-to-section"><a href="#reservation">Make A Reservation</a></li>
                             @if (Route::has('login'))
                                 @auth
                                     <li class="scroll-to-section"><a href="{{ url('/dashboard') }}">Dashboard</a></li>

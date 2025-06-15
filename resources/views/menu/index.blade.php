@@ -126,8 +126,6 @@
 
                         <!-- Deskripsi -->
                         <p class="text-gray-600 text-sm mb-4">{{ $menu->deskripsi }}</p>
-
-                        @auth
                             @if(Auth::user()->usertype == 1)
                                 <div class="flex justify-between items-center">
                                     <!-- Tombol Edit -->
@@ -147,8 +145,10 @@
                                         </button>
                                     </form>
                                 </div>
+                            @else
+                                <a href="{{ route('bookings.create') }}"
+                                class="bg-[#fb5849] text-white px-4 py-2 rounded-lg hover:bg-[#e04d40] transition">Make a Reservation</a>    
                             @endif
-                        @endauth
                     </div>
                 </div>
             @endforeach

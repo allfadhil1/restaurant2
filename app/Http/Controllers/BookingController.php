@@ -15,8 +15,15 @@ class BookingController extends Controller
     use AuthorizesRequests;
     public function index()
     {
-        $user = Auth::user(); // dapatkan user yang login
-        $bookings = Booking::where('user_id', $user->id)->latest()->get(); // filter berdasarkan user_id
+        if (auth()->user()->usertype == 1) {
+            // Admin: lihat semua booking
+            $bookings = Booking::with(['table', 'menus', 'user'])->get();
+        } else {
+            // User biasa: lihat hanya booking miliknya
+            $bookings = Booking::with(['table', 'menus'])
+                ->where('user_id', auth()->id())
+                ->get();
+        }
 
         return view('bookings.index', compact('bookings'));
     }

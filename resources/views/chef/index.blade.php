@@ -93,6 +93,12 @@
                     class="bg-[#fb5849] text-white px-5 py-2 rounded-lg mb-6 inline-block hover:bg-[#e04d40] transition">
                     + Tambah Chef
                 </a>
+            @else
+                <div class="col-lg-6 offset-lg-3 text-center">
+                    <div class="section-heading">
+                        <h6>Our Chefs</h6>
+                    </div>
+                </div>
             @endif
         @endauth
 

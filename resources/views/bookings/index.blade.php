@@ -85,18 +85,27 @@
 </nav>
 
 @section('content')
-    <h1>Daftar Booking Saya</h1>
+    @if (Auth::user()->usertype == 1)
+        <h1>Daftar Booking</h1>
+    @else
+        <h1>My Reservation</h1>
+    @endif
 
     @if($bookings->isEmpty())
         <p>Tidak ada data booking.</p>
     @else
         <table class="table-auto w-full border-collapse">
-            <a href="{{ route('bookings.create') }}"
-                class="bg-[#fb5849] text-white px-5 py-2 rounded-lg mb-6 inline-block hover:bg-[#e04d40] transition">
-                + Booking
-            </a>
+            @if (Auth::user()->usertype == 1)
+                <a href="{{ route('bookings.create') }}"
+                    class="bg-[#fb5849] text-white px-5 py-2 rounded-lg mb-6 inline-block hover:bg-[#e04d40] transition">
+                    + Booking
+                </a>
+            @endif
             <thead>
                 <tr>
+                    @if(Auth::user()->usertype == 1)
+                        <th class="border px-4 py-2">User</th>
+                    @endif
                     <th class="border px-4 py-2">Mulai Booking</th>
                     <th class="border px-4 py-2">Selesai Booking</th>
                     <th class="border px-4 py-2">Meja</th>
@@ -109,8 +118,15 @@
             <tbody>
                 @foreach($bookings as $booking)
                     <tr>
-                        <td class="border px-4 py-2">{{ \Carbon\Carbon::parse($booking->start_time)->translatedFormat('l, d F Y \p\u\k\u\l H:i') }}</td>
-                        <td class="border px-4 py-2">{{ \Carbon\Carbon::parse($booking->end_time)->translatedFormat('l, d F Y \p\u\k\u\l H:i') }}</td>
+                        @if(Auth::user()->usertype == 1)
+                            <td class="border px-4 py-2">{{ $booking->user->name ?? 'Tidak diketahui' }}</td>
+                        @endif
+                        <td class="border px-4 py-2">
+                            {{ \Carbon\Carbon::parse($booking->start_time)->translatedFormat('l, d F Y \p\u\k\u\l H:i') }}
+                        </td>
+                        <td class="border px-4 py-2">
+                            {{ \Carbon\Carbon::parse($booking->end_time)->translatedFormat('l, d F Y \p\u\k\u\l H:i') }}
+                        </td>
                         <td class="border px-4 py-2">{{ $booking->table->name ?? '-' }}</td>
                         <td class="border px-4 py-2">{{ $booking->total_price }}</td>
                         <td class="border px-4 py-2">
