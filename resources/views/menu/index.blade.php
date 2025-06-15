@@ -1,6 +1,26 @@
 @extends('layouts.app')
 
 <style>
+    .tab-btn {
+        background-color: #fff;
+        color: #fb5849;
+        border: 2px solid #fb5849;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .tab-btn:hover {
+        background-color: #fb5849;
+        color: white;
+    }
+
+    .tab-btn.active {
+        background-color: #fb5849;
+        color: white;
+    }
     body {
         margin: 0;
         /* Hapus margin dari body agar tidak ada margin default */
@@ -109,17 +129,17 @@
             </div>
         @endif
 
-        <form method="GET" action="{{ route('menu.index') }}" class="mb-6">
-            <select name="category" onchange="this.form.submit()"
-                class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#fb5849]">
-                <option value="">-- Semua Kategori --</option>
-                @foreach($categories as $cat)
-                    <option value="{{ $cat->id }}" {{ request('category') == $cat->id ? 'selected' : '' }}>
-                        {{ $cat->name }}
-                    </option>
-                @endforeach
-            </select>
-        </form>
+        <div class="flex flex-wrap gap-4 mb-6">
+            <a href="{{ route('menu.index') }}" class="tab-btn {{ request('category') == '' ? 'active' : '' }}">
+                Semua
+            </a>
+            @foreach($categories as $cat)
+                <a href="{{ route('menu.index', ['category' => $cat->id]) }}"
+                    class="tab-btn {{ request('category') == $cat->id ? 'active' : '' }}">
+                    {{ $cat->name }}
+                </a>
+            @endforeach
+        </div>
 
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -196,220 +196,201 @@
     <!-- ***** About Area Ends ***** -->
 
     <section class="custom-menu-section" id="menu">
-    <br>
-    <style>
-        .custom-menu-section {
-            background-color: #fffaf9;
-            padding: 70px 20px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        <br>
+        <style>
+            .custom-menu-section {
+                background-color: #fffaf9;
+                padding: 70px 20px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
 
-        .custom-menu-heading {
-            max-width: 1200px;
-            margin: 0 auto 50px;
-            text-align: center;
-        }
+            .custom-menu-heading {
+                max-width: 1200px;
+                margin: 0 auto 50px;
+                text-align: center;
+            }
 
-        .custom-menu-heading h6 {
-            color: #fb5849;
-            font-size: 15px;
-            font-weight: bold;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+            .custom-menu-heading h6 {
+                color: #fb5849;
+                font-size: 15px;
+                font-weight: bold;
+                margin-bottom: 8px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
 
-        .custom-menu-heading h2 {
-            font-size: 32px;
-            font-weight: 700;
-            color: #333;
-            line-height: 1.4;
-        }
+            .custom-menu-heading h2 {
+                font-size: 32px;
+                font-weight: 700;
+                color: #333;
+                line-height: 1.4;
+            }
 
-        .custom-tab-menu {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
+            .custom-tab-menu {
+                display: flex;
+                justify-content: center;
+                gap: 30px;
+                margin-bottom: 30px;
+            }
 
-        .tab-btn {
-            background-color: #fffaf9;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 12px;
-            cursor: pointer;
-            text-align: center;
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+            .tab-btn {
+                background-color: #fffaf9;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 12px;
+                cursor: pointer;
+                text-align: center;
+                transition: all 0.3s;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
 
-        .tab-btn img.icon {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 6px;
-        }
+            .tab-btn img.icon {
+                width: 40px;
+                height: 40px;
+                margin-bottom: 6px;
+            }
 
-        .tab-btn span {
-            font-weight: 600;
-            font-size: 14px;
-            color: #444;
-        }
+            .tab-btn span {
+                font-weight: 600;
+                font-size: 14px;
+                color: #444;
+            }
 
-        .tab-btn.active {
-            background-color: #fdeae7;
-        }
+            .tab-btn.active {
+                background-color: #fdeae7;
+            }
 
-        .custom-menu-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
+            .custom-menu-wrapper {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 24px;
+            }
 
-        .custom-menu-card {
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid #f3f3f3;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-        }
+            .custom-menu-card {
+                background: #fff;
+                border-radius: 16px;
+                overflow: hidden;
+                border: 1px solid #f3f3f3;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+            }
 
-        .custom-menu-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 24px rgba(251, 88, 73, 0.2);
-        }
+            .custom-menu-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 12px 24px rgba(251, 88, 73, 0.2);
+            }
 
-        .custom-menu-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 1px solid #eee;
-        }
+            .custom-menu-image {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-bottom: 1px solid #eee;
+            }
 
-        .custom-menu-content {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
+            .custom-menu-content {
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+            }
 
-        .custom-menu-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #fb5849;
-            margin-bottom: 6px;
-        }
+            .custom-menu-title {
+                font-size: 20px;
+                font-weight: 600;
+                color: #fb5849;
+                margin-bottom: 6px;
+            }
 
-        .custom-menu-price {
-            font-size: 17px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 12px;
-        }
+            .custom-menu-price {
+                font-size: 17px;
+                font-weight: bold;
+                color: #333;
+                margin-bottom: 12px;
+            }
 
-        .custom-menu-description {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.5;
-            flex-grow: 1;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-        }
+            .custom-menu-description {
+                font-size: 14px;
+                color: #666;
+                line-height: 1.5;
+                flex-grow: 1;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+            }
 
-        .btn-menu-all {
-            display: inline-block;
-            padding: 12px 24px;
-            background: transparent;
-            border: 2px solid #fb5849;
-            border-radius: 30px;
-            font-size: 16px;
-            color: #fb5849;
-            text-decoration: none;
-            transition: all 0.3s;
-            margin-top: 30px;
-        }
+            .btn-menu-all {
+                display: inline-block;
+                padding: 12px 24px;
+                background: transparent;
+                border: 2px solid #fb5849;
+                border-radius: 30px;
+                font-size: 16px;
+                color: #fb5849;
+                text-decoration: none;
+                transition: all 0.3s;
+                margin-top: 30px;
+            }
 
-        .btn-menu-all:hover {
-            background-color: #fb5849;
-            color: #fff;
-        }
-    </style>
+            .btn-menu-all:hover {
+                background-color: #fb5849;
+                color: #fff;
+            }
+        </style>
 
-    <div class="custom-menu-heading">
-        <h6>This Week’s Special</h6>
-        <h2>Meal Offers</h2>
-    </div>
+        <div class="custom-menu-heading text-center mb-6">
+            <h6 class="text-sm uppercase tracking-widest text-gray-400">This Week’s Special</h6>
+            <h2 class="text-3xl font-bold text-[#fb5849]">Meal Offers</h2>
+        </div>
 
-    <div class="custom-tab-menu">
-        <button class="tab-btn active" onclick="filterMenu('breakfast', this)">
-            <img src="{{ asset('icons/breakfast.png') }}" alt="Breakfast" class="icon">
-            <span>Breakfast</span>
-        </button>
-        <button class="tab-btn" onclick="filterMenu('lunch', this)">
-            <img src="{{ asset('icons/lunch.png') }}" alt="Lunch" class="icon">
-            <span>Lunch</span>
-        </button>
-        <button class="tab-btn" onclick="filterMenu('dinner', this)">
-            <img src="{{ asset('icons/dinner.png') }}" alt="Dinner" class="icon">
-            <span>Dinner</span>
-        </button>
-    </div>
+        <div class="flex flex-wrap gap-4 mb-6">
+            <a href="{{ url('/') }}" class="tab-btn {{ request('category') == '' ? 'active' : '' }}">
+                Semua
+            </a>
+            @foreach($categories as $cat)
+                <a href="{{ url('/') }}?category={{ $cat->id }}"
+                    class="tab-btn {{ request('category') == $cat->id ? 'active' : '' }}">
+                    {{ $cat->name }}
+                </a>
 
-    <div class="custom-menu-wrapper" id="menu-container">
-        @foreach($menus as $menu)
-            <div class="custom-menu-card category-{{ strtolower($menu->category->name) }}">
-                @if($menu->gambar)
-                    <img src="{{ asset('storage/' . $menu->gambar) }}" class="custom-menu-image" alt="{{ $menu->nama }}">
-                @endif
-                <div class="custom-menu-content">
-                    <h5 class="custom-menu-title">{{ $menu->nama }}</h5>
-                    <p class="text-sm text-gray-500 mb-2">Kategori: {{ $menu->category->name ?? '-' }}</p>
-                    <p class="custom-menu-price">Rp {{ number_format($menu->harga, 0, ',', '.') }}</p>
-                    <p class="custom-menu-description">{{ $menu->deskripsi }}</p>
+            @endforeach
+        </div>
+
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            @forelse($menus as $menu)
+                <div class="bg-white border border-[#fb5849]/30 rounded-lg shadow-lg overflow-hidden">
+                    @if($menu->gambar)
+                        <img src="{{ asset('storage/' . $menu->gambar) }}" alt="{{ $menu->nama }}"
+                            class="w-full h-48 object-cover">
+                    @endif
+
+                    <div class="p-4">
+                        <h5 class="text-xl font-semibold text-[#fb5849] mb-2">{{ $menu->nama }}</h5>
+                        <p class="text-sm text-gray-500 mb-2">Kategori: {{ $menu->category->name ?? '-' }}</p>
+                        <p class="text-lg font-bold text-[#fb5849] mb-2">Rp {{ number_format($menu->harga, 0, ',', '.') }}
+                        </p>
+                        <p class="text-gray-600 text-sm mb-4">{{ $menu->deskripsi }}</p>
+                    </div>
                 </div>
-            </div>
-        @endforeach
-    </div>
+            @empty
+                <div class="col-span-3 text-center text-gray-500">
+                    Tidak ada menu untuk kategori ini.
+                </div>
+            @endforelse
+        </div>
 
-    <div style="text-align: center;">
-        <a href="{{ url('/menu') }}" class="btn-menu-all">Lihat Menu Lengkap</a>
-    </div>
-
-    <script>
-        function filterMenu(category, btn) {
-            // Toggle active button
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            // Filter cards
-            let cards = document.querySelectorAll('.custom-menu-card');
-            let shown = 0;
-            cards.forEach(card => {
-                if (card.classList.contains('category-' + category) && shown < 5) {
-                    card.style.display = 'flex';
-                    shown++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        // Load default category
-        window.addEventListener('DOMContentLoaded', () => {
-            filterMenu('breakfast', document.querySelector('.tab-btn.active'));
-        });
-    </script>
-</section>
+        <div style="text-align: center;">
+            <a href="{{ url('/menu') }}" class="btn-menu-all">Lihat Menu Lengkap</a>
+        </div>
+    </section>
 
     <!-- ***** Chefs Area Starts ***** -->
     <section class="section" id="chefs">
@@ -489,252 +470,252 @@
     <!-- ***** Chefs Area Ends ***** -->
 
     <!-- ***** Reservation Us Area Starts ***** -->
-<section class="reservation-section" id="reservation">
-    <style>
-        .reservation-section {
-            padding: 60px 20px;
-            background-color: #f7f7f7;
-            font-family: 'Arial', sans-serif;
-        }
+    <section class="reservation-section" id="reservation">
+        <style>
+            .reservation-section {
+                padding: 60px 20px;
+                background-color: #f7f7f7;
+                font-family: 'Arial', sans-serif;
+            }
 
-        .reservation-container {
-            max-width: 1100px;
-            margin: auto;
-            background: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            display: flex;
-            flex-wrap: wrap;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
-        }
+            .reservation-container {
+                max-width: 1100px;
+                margin: auto;
+                background: #fff;
+                border-radius: 12px;
+                overflow: hidden;
+                display: flex;
+                flex-wrap: wrap;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+            }
 
-        .reservation-info {
-            flex: 1 1 35%;
-            background-color: #fb5849;
-            color: white;
-            padding: 40px;
-            box-sizing: border-box;
-        }
+            .reservation-info {
+                flex: 1 1 35%;
+                background-color: #fb5849;
+                color: white;
+                padding: 40px;
+                box-sizing: border-box;
+            }
 
-        .reservation-form {
-            flex: 1 1 65%;
-            padding: 40px;
-            box-sizing: border-box;
-        }
-
-        .reservation-info h6 {
-            text-transform: uppercase;
-            font-size: 14px;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .reservation-info h2 {
-            font-size: 26px;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .reservation-info p {
-            font-size: 14px;
-            color: #fff;
-            margin-bottom: 20px;
-        }
-
-        .contact-box {
-            margin-bottom: 20px;
-        }
-
-        .contact-box i {
-            color: white;
-            margin-right: 8px;
-        }
-
-        .contact-box h4 {
-            margin: 5px 0;
-            font-size: 16px;
-            color: white;
-        }
-
-        .contact-box a {
-            text-decoration: none;
-            color: white;
-            display: block;
-            font-size: 14px;
-        }
-
-        .form-title {
-            font-size: 20px;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 6px;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 10px 12px;
-            font-size: 14px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-        }
-
-        .menu-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 12px;
-            max-height: 200px;
-            overflow-y: auto;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            padding: 10px;
-            margin-bottom: 15px;
-        }
-
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-        }
-
-        .menu-item input {
-            width: 60px;
-            padding: 4px;
-            font-size: 14px;
-        }
-
-        .submit-btn {
-            background-color: #fb5849;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .submit-btn:hover {
-            background-color: #e04b3c;
-        }
-
-        @media (max-width: 768px) {
-            .reservation-info,
             .reservation-form {
-                flex: 1 1 100%;
+                flex: 1 1 65%;
+                padding: 40px;
+                box-sizing: border-box;
+            }
+
+            .reservation-info h6 {
+                text-transform: uppercase;
+                font-size: 14px;
+                margin-bottom: 10px;
+                color: #fff;
+            }
+
+            .reservation-info h2 {
+                font-size: 26px;
+                margin-bottom: 20px;
+                color: #fff;
+            }
+
+            .reservation-info p {
+                font-size: 14px;
+                color: #fff;
+                margin-bottom: 20px;
+            }
+
+            .contact-box {
+                margin-bottom: 20px;
+            }
+
+            .contact-box i {
+                color: white;
+                margin-right: 8px;
+            }
+
+            .contact-box h4 {
+                margin: 5px 0;
+                font-size: 16px;
+                color: white;
+            }
+
+            .contact-box a {
+                text-decoration: none;
+                color: white;
+                display: block;
+                font-size: 14px;
+            }
+
+            .form-title {
+                font-size: 20px;
+                margin-bottom: 20px;
+                font-weight: bold;
+            }
+
+            .form-group {
+                margin-bottom: 16px;
+            }
+
+            .form-group label {
+                display: block;
+                font-weight: 500;
+                margin-bottom: 6px;
+            }
+
+            .form-group input,
+            .form-group select {
+                width: 100%;
+                padding: 10px 12px;
+                font-size: 14px;
+                border-radius: 6px;
+                border: 1px solid #ccc;
             }
 
             .menu-list {
-                grid-template-columns: 1fr;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 12px;
+                max-height: 200px;
+                overflow-y: auto;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                padding: 10px;
+                margin-bottom: 15px;
             }
-        }
 
-        .text-danger {
-            color: red;
-            font-size: 13px;
-        }
+            .menu-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 14px;
+            }
 
-        .text-success {
-            color: green;
-            margin-bottom: 16px;
-        }
-    </style>
+            .menu-item input {
+                width: 60px;
+                padding: 4px;
+                font-size: 14px;
+            }
 
-    <div class="reservation-container">
-        <div class="reservation-info">
-            <h6>Contact Us</h6>
-            <h2>Reservasi Meja atau Datang Langsung</h2>
-            <p>Kami siap melayani Anda untuk reservasi meja maupun kunjungan langsung ke cafe kami.</p>
+            .submit-btn {
+                background-color: #fb5849;
+                color: white;
+                padding: 12px 20px;
+                border: none;
+                border-radius: 6px;
+                font-size: 16px;
+                cursor: pointer;
+                width: 100%;
+            }
 
-            <div class="contact-box">
-                <i class="fa fa-phone"></i>
-                <h4>Phone Numbers</h4>
-                <a href="#">080-090-0990</a>
-                <a href="#">080-090-0880</a>
+            .submit-btn:hover {
+                background-color: #e04b3c;
+            }
+
+            @media (max-width: 768px) {
+
+                .reservation-info,
+                .reservation-form {
+                    flex: 1 1 100%;
+                }
+
+                .menu-list {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            .text-danger {
+                color: red;
+                font-size: 13px;
+            }
+
+            .text-success {
+                color: green;
+                margin-bottom: 16px;
+            }
+        </style>
+
+        <div class="reservation-container">
+            <div class="reservation-info">
+                <h6>Contact Us</h6>
+                <h2>Reservasi Meja atau Datang Langsung</h2>
+                <p>Kami siap melayani Anda untuk reservasi meja maupun kunjungan langsung ke cafe kami.</p>
+
+                <div class="contact-box">
+                    <i class="fa fa-phone"></i>
+                    <h4>Phone Numbers</h4>
+                    <a href="#">080-090-0990</a>
+                    <a href="#">080-090-0880</a>
+                </div>
+
+                <div class="contact-box">
+                    <i class="fa fa-envelope"></i>
+                    <h4>Emails</h4>
+                    <a href="#">hello@company.com</a>
+                    <a href="#">info@company.com</a>
+                </div>
             </div>
 
-            <div class="contact-box">
-                <i class="fa fa-envelope"></i>
-                <h4>Emails</h4>
-                <a href="#">hello@company.com</a>
-                <a href="#">info@company.com</a>
-            </div>
-        </div>
+            <div class="reservation-form">
+                @if(session('success'))
+                    <div class="text-success">{{ session('success') }}</div>
+                @endif
+                <form id="contact" action="{{ route('bookings.store') }}" method="post">
+                    @csrf
+                    <div class="form-title">Table Reservation</div>
 
-        <div class="reservation-form">
-            @if(session('success'))
-                <div class="text-success">{{ session('success') }}</div>
-            @endif
-            <form id="contact" action="{{ route('bookings.store') }}" method="post">
-                @csrf
-                <div class="form-title">Table Reservation</div>
-
-                <div class="form-group">
-                    <label for="name">Nama:</label>
-                    <input name="name" type="text" id="name"
-                        value="{{ Auth::check() ? Auth::user()->name : '' }}"
-                        {{ Auth::check() ? 'readonly' : 'required' }} required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input name="email" type="email" id="email"
-                        value="{{ Auth::check() ? Auth::user()->email : '' }}"
-                        {{ Auth::check() ? 'readonly' : 'required' }} required>
-                </div>
-
-                <div class="form-group">
-                    <label for="table_id">Pilih Meja:</label>
-                    <select name="table_id" id="table_id" required>
-                        <option value="">-- Pilih Meja --</option>
-                        @foreach($tables as $table)
-                            <option value="{{ $table->id }}">{{ $table->name }}</option>
-                        @endforeach
-                    </select>
-                    @error('table_id') <div class="text-danger">{{ $message }}</div> @enderror
-                </div>
-
-                <div class="form-group">
-                    <label>Menu:</label>
-                    <div class="menu-list">
-                        @foreach ($menus as $menu)
-                            <div class="menu-item">
-                                <span>{{ $menu->nama }} <small>(Rp {{ number_format($menu->harga, 0, ',', '.') }})</small></span>
-                                <input type="number" name="menus[{{ $menu->id }}][quantity]" value="0" min="0">
-                            </div>
-                        @endforeach
+                    <div class="form-group">
+                        <label for="name">Nama:</label>
+                        <input name="name" type="text" id="name" value="{{ Auth::check() ? Auth::user()->name : '' }}"
+                            {{ Auth::check() ? 'readonly' : 'required' }} required>
                     </div>
-                    @error('menus') <div class="text-danger">{{ $message }}</div> @enderror
-                </div>
 
-                <div class="form-group">
-                    <label for="start_time">Mulai Booking:</label>
-                    <input type="datetime-local" name="start_time" id="start_time" required>
-                    @error('start_time') <div class="text-danger">{{ $message }}</div> @enderror
-                </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input name="email" type="email" id="email"
+                            value="{{ Auth::check() ? Auth::user()->email : '' }}" {{ Auth::check() ? 'readonly' : 'required' }} required>
+                    </div>
 
-                <div class="form-group">
-                    <label for="end_time">Selesai Booking:</label>
-                    <input type="datetime-local" name="end_time" id="end_time" required>
-                    @error('end_time') <div class="text-danger">{{ $message }}</div> @enderror
-                </div>
+                    <div class="form-group">
+                        <label for="table_id">Pilih Meja:</label>
+                        <select name="table_id" id="table_id" required>
+                            <option value="">-- Pilih Meja --</option>
+                            @foreach($tables as $table)
+                                <option value="{{ $table->id }}">{{ $table->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('table_id') <div class="text-danger">{{ $message }}</div> @enderror
+                    </div>
 
-                <button type="submit" class="submit-btn">Make A Reservation</button>
-            </form>
+                    <div class="form-group">
+                        <label>Menu:</label>
+                        <div class="menu-list">
+                            @foreach ($menus as $menu)
+                                <div class="menu-item">
+                                    <span>{{ $menu->nama }} <small>(Rp
+                                            {{ number_format($menu->harga, 0, ',', '.') }})</small></span>
+                                    <input type="number" name="menus[{{ $menu->id }}][quantity]" value="0" min="0">
+                                </div>
+                            @endforeach
+                        </div>
+                        @error('menus') <div class="text-danger">{{ $message }}</div> @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="start_time">Mulai Booking:</label>
+                        <input type="datetime-local" name="start_time" id="start_time" required>
+                        @error('start_time') <div class="text-danger">{{ $message }}</div> @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="end_time">Selesai Booking:</label>
+                        <input type="datetime-local" name="end_time" id="end_time" required>
+                        @error('end_time') <div class="text-danger">{{ $message }}</div> @enderror
+                    </div>
+
+                    <button type="submit" class="submit-btn">Make A Reservation</button>
+                </form>
+            </div>
         </div>
-    </div>
-</section>
-<!-- ***** Reservation Us Area Ends ***** -->
+    </section>
+    <!-- ***** Reservation Us Area Ends ***** -->
 
 
     <!-- ***** Menu Area Starts ***** -->
